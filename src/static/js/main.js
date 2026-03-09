@@ -67,30 +67,80 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // --- Typing Effect for Hero Title ---
-    const heroTitle = document.querySelector('.hero h1');
-    if (heroTitle && !localStorage.getItem('hero_typed')) {
-        const text = heroTitle.innerText;
-        heroTitle.innerText = '';
-        heroTitle.classList.add('typing-cursor');
-        
-        let i = 0;
-        const speed = 50; // ms per char
+    // --- Advanced Typing Effect (Preserves HTML & Spacing) ---
+    const heroTitles = document.querySelectorAll('h1'); // Apply to ALL h1 elements
+    
+    heroTitles.forEach(title => {
+        // Skip if already processed or has no content
+        if (title.getAttribute('data-typed') === 'true' || !title.innerHTML.trim()) return;
 
+        // Store original HTML content (including icons and spans)
+        const originalContent = title.innerHTML;
+        const originalText = title.innerText; // For fallback/accessibility
+        
+        // Clear content initially
+        title.innerHTML = '';
+        title.classList.add('typing-cursor');
+        
+        // Create a temporary container to parse HTML nodes
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = originalContent;
+        
+        const nodes = Array.from(tempDiv.childNodes);
+        let currentNodeIndex = 0;
+        let currentCharIndex = 0;
+        
         function typeWriter() {
-            if (i < text.length) {
-                heroTitle.innerText += text.charAt(i);
-                i++;
-                setTimeout(typeWriter, speed);
+            if (currentNodeIndex < nodes.length) {
+                const currentNode = nodes[currentNodeIndex];
+                
+                if (currentNode.nodeType === Node.TEXT_NODE) {
+                    // It's a text node, type character by character
+                    const text = currentNode.textContent;
+                    
+                    if (currentCharIndex < text.length) {
+                        // Append next character
+                        // We need to append to the last text node in the title, or create one
+                        let lastNode = title.lastChild;
+                        if (!lastNode || lastNode.nodeType !== Node.TEXT_NODE) {
+                            lastNode = document.createTextNode('');
+                            title.appendChild(lastNode);
+                        }
+                        lastNode.textContent += text.charAt(currentCharIndex);
+                        currentCharIndex++;
+                        setTimeout(typeWriter, 30 + Math.random() * 30); // Random speed for realism
+                    } else {
+                        // Finished this text node, move to next node
+                        currentNodeIndex++;
+                        currentCharIndex = 0;
+                        setTimeout(typeWriter, 10);
+                    }
+                } else {
+                    // It's an HTML element (like <i> icon or <span>), append instantly
+                    // Clone the node to avoid moving it from tempDiv
+                    title.appendChild(currentNode.cloneNode(true));
+                    currentNodeIndex++;
+                    setTimeout(typeWriter, 100); // Pause slightly after element
+                }
             } else {
-                heroTitle.classList.remove('typing-cursor');
-                // Optional: localStorage.setItem('hero_typed', 'true'); // Uncomment to run only once
+                // Animation complete
+                title.classList.remove('typing-cursor');
+                title.setAttribute('data-typed', 'true');
             }
         }
         
-        // Start after a small delay
-        setTimeout(typeWriter, 500);
-    }
+        // Start animation with a small delay based on intersection or immediate
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    setTimeout(typeWriter, 200);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        observer.observe(title);
+    });
 
     // --- Interactive Particles System ---
     const canvas = document.getElementById('particles-canvas');

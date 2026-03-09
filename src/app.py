@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify, session
+from flask import Flask, render_template, request, jsonify, session, flash, redirect, url_for
 import os
 import sys
 
@@ -47,12 +47,28 @@ def web_ai():
 def about():
     return render_template('about.html')
 
+@app.route('/processo')
+def process():
+    return render_template('process.html')
+
 @app.route('/faq')
 def faq():
     return render_template('faq.html')
 
-@app.route('/contatti')
+@app.route('/contatti', methods=['GET', 'POST'])
 def contact():
+    if request.method == 'POST':
+        # Simulazione invio email
+        name = request.form.get('name')
+        email = request.form.get('email')
+        message = request.form.get('message')
+        
+        # Qui si potrebbe integrare l'invio reale di email o il salvataggio su DB
+        print(f"Nuovo contatto ricevuto: {name} ({email}): {message}")
+        
+        flash('Messaggio inviato con successo! Ti risponderemo al più presto.', 'success')
+        return redirect(url_for('contact'))
+        
     return render_template('contact.html')
 
 @app.route('/chat', methods=['POST'])

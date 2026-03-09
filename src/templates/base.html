@@ -35,6 +35,7 @@
             <ul class="nav-links">
                 <li><a href="/">Home</a></li>
                 <li><a href="/chi-siamo">Chi Siamo</a></li>
+                <li><a href="/processo">Processo</a></li>
                 <li><a href="/web-ai">Web & AI</a></li>
                 <li><a href="/faq">FAQ</a></li>
                 <li><a href="/contatti">Contatti</a></li>
@@ -43,6 +44,18 @@
     </nav>
 
     <!-- Main Content -->
+    <div class="container" style="margin-top: 2rem;">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }} reveal">
+                        <i class="fas fa-check-circle"></i> {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+
     {% block content %}{% endblock %}
 
     <!-- Footer -->
@@ -57,6 +70,7 @@
                 <ul>
                     <li><a href="/">Home</a></li>
                     <li><a href="/chi-siamo">Chi Siamo</a></li>
+                    <li><a href="/processo">Processo</a></li>
                     <li><a href="/web-ai">Web & AI</a></li>
                     <li><a href="/faq">FAQ</a></li>
                     <li><a href="/contatti">Contatti</a></li>

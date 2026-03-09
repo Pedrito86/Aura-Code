@@ -24,10 +24,12 @@
     <div class="hero">
         <h1>Aura Code: Web Agency & AI Solutions</h1>
         <p class="reveal">Sviluppo Siti Web, E-Commerce e Software Gestionale. Trasformiamo la tua visione in realtà digitale con algoritmi di Intelligenza Artificiale avanzati e design senza tempo.</p>
-        <br>
-        <a href="#" class="btn-primary open-chat-btn reveal">
-            <i class="fas fa-magic"></i> Inizia la Trasformazione Digitale
-        </a>
+        <div style="margin-top: 2rem;" class="reveal">
+            <h2 style="font-size: 1.8rem; margin-bottom: 1rem; color: var(--secondary-color);">Inizia la Trasformazione Digitale</h2>
+            <a href="#" class="btn-primary open-chat-btn">
+                Richiedi una Consulenza
+            </a>
+        </div>
     </div>
 
     <div class="feature-section">
@@ -50,7 +52,7 @@
             
             <div class="service-card reveal">
                 <div class="service-icon">
-                    <i class="fas fa-chart-network"></i>
+                    <i class="fas fa-chart-line"></i>
                 </div>
                 <h3>Realizzazione E-Commerce Predittivi</h3>
                 <p>Negozi online ottimizzati per la vendita. Utilizziamo algoritmi di raccomandazione e analisi comportamentale per massimizzare le conversioni e fidelizzare i clienti nel lungo periodo.</p>
@@ -97,34 +99,78 @@
         </div>
     </div>
 
-    <!-- Process Section -->
-    <div class="process-section reveal">
+    <!-- Process Section Removed (Moved to /processo) -->
+
+    <!-- Pricing Section -->
+    <div class="pricing-section reveal">
         <div class="section-title">
-            <h2>Il Nostro Processo</h2>
-            <p>Un metodo collaudato per trasformare la tua visione in risultati concreti.</p>
+            <h2>I Nostri Pacchetti</h2>
+            <p>Soluzioni trasparenti e scalabili per ogni fase della tua crescita digitale.</p>
         </div>
-        <div class="process-steps">
-            <div class="process-step">
-                <div class="step-number">01</div>
-                <h3>Analisi & Strategia</h3>
-                <p>Analizziamo il tuo mercato e definiamo gli obiettivi per creare una roadmap di successo.</p>
+        
+        <div class="pricing-grid">
+            <!-- Starter Plan -->
+            <div class="pricing-card">
+                <div class="pricing-header">
+                    <h3>Sito Web Starter</h3>
+                    <div class="price">€800 – €1200</div>
+                    <p class="price-desc">Ideale per startup e piccole imprese</p>
+                </div>
+                <ul class="pricing-features">
+                    <li><i class="fas fa-check"></i> Fino a 4 pagine</li>
+                    <li><i class="fas fa-check"></i> Design moderno</li>
+                    <li><i class="fas fa-check"></i> Responsive (Mobile-First)</li>
+                    <li><i class="fas fa-check"></i> SEO base</li>
+                    <li><i class="fas fa-clock"></i> Consegna in 7 giorni</li>
+                </ul>
+                <div class="pricing-footer">
+                    <a href="/contatti" class="btn-pricing">Inizia Ora</a>
+                </div>
             </div>
-            <div class="process-step">
-                <div class="step-number">02</div>
-                <h3>Design & UX</h3>
-                <p>Progettiamo interfacce intuitive e accattivanti che guidano l'utente verso la conversione.</p>
+
+            <!-- Business Plan (Most Popular) -->
+            <div class="pricing-card popular">
+                <div class="popular-badge">Più Richiesto</div>
+                <div class="pricing-header">
+                    <h3>Sito Web Business</h3>
+                    <div class="price">€1500 – €3000</div>
+                    <p class="price-desc">Per aziende che vogliono dominare il mercato</p>
+                </div>
+                <ul class="pricing-features">
+                    <li><i class="fas fa-check"></i> Fino a 8 pagine</li>
+                    <li><i class="fas fa-check"></i> Design custom premium</li>
+                    <li><i class="fas fa-check"></i> SEO ottimizzato</li>
+                    <li><i class="fas fa-check"></i> Animazioni moderne</li>
+                    <li><i class="fas fa-check"></i> Integrazione Analytics</li>
+                </ul>
+                <div class="pricing-footer">
+                    <a href="/contatti" class="btn-pricing btn-popular">Scegli Business</a>
+                </div>
             </div>
-            <div class="process-step">
-                <div class="step-number">03</div>
-                <h3>Sviluppo & AI</h3>
-                <p>Scriviamo codice pulito e integriamo algoritmi intelligenti per potenziare il tuo business.</p>
-            </div>
-            <div class="process-step">
-                <div class="step-number">04</div>
-                <h3>Lancio & Growth</h3>
-                <p>Mettiamo online il progetto e monitoriamo le performance per una crescita costante.</p>
+
+            <!-- Custom Plan -->
+            <div class="pricing-card">
+                <div class="pricing-header">
+                    <h3>Web App Custom</h3>
+                    <div class="price">Preventivo su Misura</div>
+                    <p class="price-desc">Soluzioni enterprise su misura</p>
+                </div>
+                <ul class="pricing-features">
+                    <li><i class="fas fa-check"></i> Dashboard personalizzate</li>
+                    <li><i class="fas fa-check"></i> Automazioni avanzate</li>
+                    <li><i class="fas fa-check"></i> Integrazione API</li>
+                    <li><i class="fas fa-check"></i> Sistemi scalabili</li>
+                    <li><i class="fas fa-infinity"></i> Supporto dedicato</li>
+                </ul>
+                <div class="pricing-footer">
+                    <a href="/contatti" class="btn-pricing">Richiedi Preventivo</a>
+                </div>
             </div>
         </div>
+        
+        <p class="pricing-disclaimer">
+            <i class="fas fa-info-circle"></i> I prezzi possono variare a seconda della complessità del progetto.
+        </p>
     </div>
 
     <!-- Portfolio Section (Premium Glass Cards) -->
