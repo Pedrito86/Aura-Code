@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}Contattaci - Aura Code{% endblock %}
+
+{% block content %}
+<div class="container" style="padding-top: 8rem; padding-bottom: 4rem;">
+    <div class="section-title reveal">
+        <h1>Parla con Noi</h1>
+        <p>Raccontaci la tua idea. Costruiremo insieme la strategia digitale perfetta.</p>
+    </div>
+
+    <div class="contact-wrapper reveal">
+        <div class="glass-section" style="max-width: 800px; margin: 0 auto; text-align: left;">
+            <form action="#" method="POST" class="contact-form">
+                <div class="form-group">
+                    <label for="name">Nome e Cognome</label>
+                    <input type="text" id="name" name="name" placeholder="Il tuo nome" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email Aziendale</label>
+                    <input type="email" id="email" name="email" placeholder="nome@azienda.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Telefono (Opzionale)</label>
+                    <input type="tel" id="phone" name="phone" placeholder="+39 333 1234567">
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Come possiamo aiutarti?</label>
+                    <textarea id="message" name="message" rows="5" placeholder="Descrivi brevemente il tuo progetto..." required></textarea>
+                </div>
+
+                <div class="form-footer" style="text-align: center; margin-top: 2rem;">
+                    <button type="submit" class="btn-primary" style="width: 100%; max-width: 300px; font-size: 1.1rem;">
+                        <i class="fas fa-paper-plane"></i> Invia Messaggio
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
