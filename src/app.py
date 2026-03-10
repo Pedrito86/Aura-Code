@@ -55,6 +55,14 @@ def process():
 def faq():
     return render_template('faq.html')
 
+@app.route('/settori')
+def sectors():
+    return render_template('settori.html')
+
+@app.route('/settori-esempi')
+def sector_examples():
+    return render_template('settori_esempi.html')
+
 @app.route('/contatti', methods=['GET', 'POST'])
 def contact():
     if request.method == 'POST':

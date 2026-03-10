@@ -90,6 +90,7 @@ body::before {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative;
 }
 
 .logo {
@@ -100,6 +101,37 @@ body::before {
     display: flex;
     align-items: center;
     gap: 0.5rem;
+}
+
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 10px;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.menu-toggle .bar {
+    display: block;
+    width: 26px;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 999px;
+    transition: var(--transition);
+}
+
+.menu-toggle.active .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.menu-toggle.active .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.active .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
 }
 
 .nav-links {
@@ -950,16 +982,21 @@ footer {
 }
 
 /* Mobile Menu */
-.menu-btn {
-    display: none;
-    font-size: 1.5rem;
-    color: var(--white);
-    cursor: pointer;
-}
-
 @media (max-width: 768px) {
-    .menu-btn {
-        display: block;
+    .container {
+        padding: 0 1rem;
+    }
+
+    .navbar {
+        padding: 0.75rem 0;
+    }
+
+    .logo {
+        font-size: 1.25rem;
+    }
+
+    .menu-toggle {
+        display: flex;
     }
 
     .nav-links {
@@ -968,23 +1005,343 @@ footer {
         top: 100%;
         left: 0;
         width: 100%;
-        background: var(--surface-glass);
+        background: #111111;
         backdrop-filter: blur(12px);
         flex-direction: column;
         padding: 2rem;
         text-align: center;
         box-shadow: var(--shadow-lg);
+        border-top: 1px solid rgba(255, 255, 255, 0.06);
+        max-height: calc(100vh - 72px);
+        overflow: auto;
     }
 
     .nav-links.active {
         display: flex;
     }
 
+    .hero {
+        padding: 5.5rem 0 3rem;
+    }
+
+    .hero::after {
+        width: 420px;
+        height: 420px;
+    }
+
     h1, .hero h1 {
         font-size: 2.2rem;
+        letter-spacing: 1px;
+        word-spacing: 0.35rem;
+    }
+
+    .hero p {
+        font-size: 1.05rem;
+    }
+
+    .smart-banner-item {
+        padding: 0 1.5rem;
+        font-size: 0.85rem;
+        letter-spacing: 1.5px;
+    }
+
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .service-card {
+        padding: 2rem;
+    }
+
+    .pricing-section {
+        padding: 4.5rem 0;
+    }
+
+    .pricing-card {
+        padding: 2rem;
+    }
+
+    .pricing-card.popular,
+    .pricing-card.popular:hover {
+        transform: none;
+    }
+
+    .popular-badge {
+        top: 22px;
+        right: -62px;
+        width: 190px;
+        font-size: 0.8rem;
+    }
+
+    .section-title {
+        margin-bottom: 3rem;
+    }
+
+    .section-title h2 {
+        font-size: 2rem;
+    }
+
+    .project-card {
+        padding: 2.25rem 1.5rem;
+    }
+
+    .footer-section ul {
+        column-count: 1;
+        column-rule: none;
+    }
+
+    .chat-toggle-btn {
+        right: 16px;
+        bottom: 16px;
+        width: 54px;
+        height: 54px;
+    }
+
+    .chat-widget {
+        left: 12px;
+        right: 12px;
+        width: auto;
+        height: 70vh;
+        max-height: 520px;
+        bottom: 86px;
+    }
+
+    .chat-body {
+        padding: 1rem;
     }
 }
 
+@media (max-width: 480px) {
+    h1, .hero h1 {
+        font-size: 1.9rem;
+        letter-spacing: 0.5px;
+        word-spacing: 0.25rem;
+    }
+
+    .hero {
+        padding: 5rem 0 2.5rem;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+        padding: 0.9rem 1.5rem;
+    }
+
+    .service-card {
+        padding: 1.75rem;
+    }
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.sector-section {
+    scroll-margin-top: 110px;
+    margin-top: 5rem;
+}
+
+.mockup-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.mockup {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    min-height: 260px;
+}
+
+.mockup-topbar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 12px;
+    background: #111111;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.mockup-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.22);
+}
+
+.mockup-label {
+    margin-left: 4px;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.75);
+    font-weight: 600;
+}
+
+.mockup-body {
+    padding: 1.25rem;
+}
+
+.mockup-svg {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 14px;
+    margin-top: 0.75rem;
+}
+
+.mockup-title {
+    font-weight: 700;
+    color: var(--white);
+    font-size: 1.05rem;
+    margin-bottom: 0.75rem;
+}
+
+.mockup-line {
+    height: 10px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.12);
+    margin-bottom: 10px;
+}
+
+.mockup-line.short {
+    width: 70%;
+}
+
+.mockup-row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin: 14px 0;
+}
+
+.mockup-pill {
+    padding: 8px 12px;
+    border-radius: 999px;
+    background: rgba(96, 165, 250, 0.18);
+    border: 1px solid rgba(96, 165, 250, 0.25);
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+
+.mockup-pill.secondary {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.mockup-block {
+    height: 86px;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.mockup-block.tall {
+    height: 130px;
+}
+
+.mockup-item {
+    padding: 10px 12px;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    margin-top: 10px;
+}
+
+.mockup-chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: rgba(167, 139, 250, 0.12);
+    border: 1px solid rgba(167, 139, 250, 0.22);
+    color: rgba(255, 255, 255, 0.85);
+    font-weight: 700;
+    font-size: 0.85rem;
+    margin-bottom: 12px;
+}
+
+.mockup-field {
+    height: 44px;
+    border-radius: 12px;
+    background: rgba(15, 23, 42, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    margin-bottom: 12px;
+}
+
+.mockup-kpi-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin: 14px 0;
+}
+
+.mockup-kpi {
+    height: 44px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.mockup-search {
+    height: 44px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 14px;
+}
+
+.mockup-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.mockup-card {
+    height: 78px;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.mockup-image {
+    height: 110px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, rgba(96, 165, 250, 0.18), rgba(167, 139, 250, 0.12));
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    margin-bottom: 14px;
+}
+
+.mockup-review {
+    height: 54px;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    margin-top: 10px;
+}
+
+.mockup-map {
+    height: 120px;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    margin-bottom: 14px;
+}
+
+@media (max-width: 768px) {
+    .sector-section {
+        margin-top: 4rem;
+    }
+
+    .mockup-cards {
+        grid-template-columns: 1fr;
+    }
+}
 /* Chat Widget Styles */
 .chat-toggle-btn {
     position: fixed;
@@ -1101,5 +1458,3 @@ footer {
     opacity: 1;
     pointer-events: all;
 }
-
-
