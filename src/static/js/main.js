@@ -39,6 +39,52 @@ document.addEventListener('DOMContentLoaded', function() {
 
     revealElements.forEach(element => revealObserver.observe(element));
 
+    const counterElements = document.querySelectorAll('[data-counter][data-target]');
+    const animateCounter = (element) => {
+        if (!element || element.getAttribute('data-animated') === 'true') return;
+
+        const target = Number(element.getAttribute('data-target'));
+        if (!Number.isFinite(target)) return;
+
+        const suffix = element.getAttribute('data-suffix') || '';
+        const duration = Number(element.getAttribute('data-duration')) || 1100;
+
+        element.setAttribute('data-animated', 'true');
+
+        const startTime = performance.now();
+        const tick = (now) => {
+            const progress = Math.min((now - startTime) / duration, 1);
+            const currentValue = Math.floor(progress * target);
+            element.textContent = `${currentValue}${suffix}`;
+            if (progress < 1) {
+                requestAnimationFrame(tick);
+            } else {
+                element.textContent = `${target}${suffix}`;
+            }
+        };
+
+        element.textContent = `0${suffix}`;
+        requestAnimationFrame(tick);
+    };
+
+    if (counterElements.length) {
+        const containers = new Set();
+        counterElements.forEach((el) => {
+            containers.add(el.closest('.hero-trust') || el);
+        });
+
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
+                const container = entry.target;
+                container.querySelectorAll('[data-counter][data-target]').forEach(animateCounter);
+                counterObserver.unobserve(container);
+            });
+        }, { threshold: 0.4 });
+
+        containers.forEach((container) => counterObserver.observe(container));
+    }
+
     // --- 3D Tilt Effect for Service Cards ---
     const tiltCards = document.querySelectorAll('.service-card');
 

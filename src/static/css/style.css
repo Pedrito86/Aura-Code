@@ -211,6 +211,49 @@ h1 i {
     animation: slideUp 1s ease-out 0.2s backwards;
 }
 
+.hero-trust {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    flex-wrap: wrap;
+    gap: 1.75rem;
+    margin: 1.75rem auto 0;
+    max-width: 860px;
+}
+
+.hero-trust-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.85rem 1.05rem;
+    min-width: 190px;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: var(--shadow-sm);
+}
+
+.hero-trust-number {
+    font-size: 1.75rem;
+    font-weight: 900;
+    letter-spacing: 1px;
+    color: rgba(255, 255, 255, 0.94);
+    filter: drop-shadow(0 0 12px rgba(96, 165, 250, 0.22));
+}
+
+.hero-trust-number i {
+    color: var(--primary-color);
+}
+
+.hero-trust-label {
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: rgba(255, 255, 255, 0.68);
+}
+
 /* Smart Banner */
 .smart-banner {
     background: linear-gradient(90deg, #1e293b, #2563eb, #1e293b);
