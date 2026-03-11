@@ -1144,7 +1144,7 @@ img {
 
 .mockup-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 1.5rem;
     margin-top: 1.5rem;
 }
@@ -1235,7 +1235,9 @@ img {
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
     position: relative;
-    overflow: hidden;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
     --mockup-accent: rgba(96, 165, 250, 0.9);
     --mockup-accent-soft: rgba(96, 165, 250, 0.18);
     --mockup-accent-border: rgba(96, 165, 250, 0.25);
@@ -2341,6 +2343,13 @@ img {
     flex: 1;
 }
 
+.mockup-review-name {
+    font-size: 0.86rem;
+    font-weight: 900;
+    color: rgba(255, 255, 255, 0.92);
+    line-height: 1.2;
+}
+
 .mockup-review-meta .mockup-line {
     height: 8px;
     margin: 0;
@@ -2354,10 +2363,15 @@ img {
 }
 
 .mockup-review-text {
-    height: 38px;
+    min-height: 44px;
+    padding: 10px 12px;
     border-radius: 12px;
     background: rgba(15, 23, 42, 0.32);
     border: 1px solid rgba(255, 255, 255, 0.08);
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.74);
+    line-height: 1.35;
 }
 
 .mockup-review-layout {
@@ -2750,6 +2764,19 @@ img {
 @media (max-width: 768px) {
     .sector-section {
         margin-top: 4rem;
+    }
+
+    .mockup-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .mockup-page--lux[class*="mockup-theme--"] {
+        height: auto;
+        overflow: visible;
+    }
+
+    .mockup-screenshot--banner {
+        aspect-ratio: 16 / 10;
     }
 
     .mockup-split {
