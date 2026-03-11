@@ -1,43 +1,165 @@
 {% extends "base.html" %}
 
 {% block title %}Contattaci - Aura Code{% endblock %}
+{% block meta_description %}Contatta Aura Code per siti web, e-commerce, software e AI. Operiamo da remoto in tutta Italia, disponibili su appuntamento a Bologna e nelle aree limitrofe.{% endblock %}
 
 {% block content %}
 <div class="container" style="padding-top: 4rem; padding-bottom: 4rem;">
     <div class="section-title reveal">
         <h1>Parla con Noi</h1>
-        <p>Raccontaci la tua idea. Costruiremo insieme la strategia digitale perfetta.</p>
+        <p>Raccontaci la tua idea. Ti rispondiamo con una direzione chiara e una proposta su misura.</p>
     </div>
 
     <div class="contact-wrapper reveal">
-        <div class="glass-section contact-container">
-            <form action="#" method="POST" class="contact-form">
-                <div class="form-group">
-                    <label for="name">Nome e Cognome</label>
-                    <input type="text" id="name" name="name" placeholder="Il tuo nome" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="email">Email Aziendale</label>
-                    <input type="email" id="email" name="email" placeholder="nome@azienda.com" required>
+        <div class="contact-premium-shell">
+            <div class="glass-section contact-container">
+                <div class="contact-intro">
+                    <h2>Richiedi una consulenza</h2>
+                    <p>Compila il form oppure usa uno dei canali diretti. Operiamo da remoto in tutta Italia.</p>
                 </div>
 
-                <div class="form-group">
-                    <label for="phone">Telefono (Opzionale)</label>
-                    <input type="tel" id="phone" name="phone" placeholder="+39 333 1234567">
+                <form action="{{ url_for('contact') }}" method="POST" class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Nome e Cognome</label>
+                        <input type="text" id="name" name="name" placeholder="Il tuo nome" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="nome@azienda.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Telefono (opzionale)</label>
+                        <input type="tel" id="phone" name="phone" placeholder="+39 333 1234567">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="topic">Di cosa hai bisogno?</label>
+                        <select id="topic" name="topic" required>
+                            <option value="" disabled selected>Seleziona un’opzione</option>
+                            <option value="sito-web">Sito Web</option>
+                            <option value="ecommerce">E-Commerce</option>
+                            <option value="software">Software Gestionale</option>
+                            <option value="ai">Automazioni / Agenti AI</option>
+                            <option value="altro">Altro</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Messaggio</label>
+                        <textarea id="message" name="message" rows="6" placeholder="Obiettivo, tempi, pagine/funzionalità, esempi di siti che ti piacciono…" required></textarea>
+                    </div>
+
+                    <div class="form-footer">
+                        <button type="submit" class="btn-primary" style="width: 100%; font-size: 1.1rem;">
+                            <i class="fas fa-paper-plane"></i> Invia richiesta
+                        </button>
+                        <div class="contact-note">Risposta rapida. Nessuno spam.</div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="contact-side">
+                <div class="services-grid contact-methods-grid" style="margin-bottom: 0;">
+                    <div class="service-card reveal contact-method-card">
+                        <div class="service-icon"><i class="fas fa-envelope-open-text"></i></div>
+                        <h3>Email diretta</h3>
+                        <p>Scrivici e ti rispondiamo con i prossimi step.</p>
+                        <a class="btn-secondary" href="mailto:hello@auracode.it"><i class="fas fa-at"></i> hello@auracode.it</a>
+                    </div>
+
+                    <div class="service-card reveal contact-method-card">
+                        <div class="service-icon"><i class="fas fa-comment-dots"></i></div>
+                        <h3>Chat Preventivo</h3>
+                        <p>Se vuoi andare dritto al punto, apri l’assistente e configura la tua richiesta.</p>
+                        <a class="btn-secondary open-chat-btn" href="#"><i class="fas fa-robot"></i> Apri assistente</a>
+                    </div>
                 </div>
 
-                <div class="form-group">
-                    <label for="message">Come possiamo aiutarti?</label>
-                    <textarea id="message" name="message" rows="5" placeholder="Descrivi brevemente il tuo progetto..." required></textarea>
+                <div class="glass-section contact-location">
+                    <div class="contact-location-head">
+                        <h3><i class="fas fa-location-dot"></i> Dove operiamo</h3>
+                        <p>Da remoto in tutta Italia. Disponibile su appuntamento a Bologna e nelle aree limitrofe.</p>
+                    </div>
+                    <div class="contact-map">
+                        <iframe
+                            title="Piazza Maggiore, Bologna"
+                            src="https://www.openstreetmap.org/export/embed.html?bbox=11.3407%2C44.4927%2C11.3479%2C44.4967&layer=mapnik&marker=44.4947%2C11.3444"
+                            loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"
+                        ></iframe>
+                    </div>
                 </div>
+            </div>
+        </div>
+    </div>
 
-                <div class="form-footer" style="text-align: center; margin-top: 2rem;">
-                    <button type="submit" class="btn-primary" style="width: 100%; max-width: 300px; font-size: 1.1rem;">
-                        <i class="fas fa-paper-plane"></i> Invia Messaggio
-                    </button>
-                </div>
-            </form>
+    <div class="section-title reveal" style="margin-top: 5rem;">
+        <h2>Cosa succede dopo l’invio</h2>
+        <p>Un flusso chiaro, senza call infinite e senza perdite di tempo.</p>
+    </div>
+
+    <div class="services-grid" style="margin-bottom: 2rem;">
+        <div class="service-card reveal">
+            <div class="service-icon"><i class="fas fa-inbox"></i></div>
+            <h3>1) Analisi</h3>
+            <p>Leggiamo la richiesta e identifichiamo obiettivo, priorità e requisiti.</p>
+        </div>
+        <div class="service-card reveal">
+            <div class="service-icon"><i class="fas fa-phone-volume"></i></div>
+            <h3>2) Call breve</h3>
+            <p>Allineamento rapido (15–20 minuti) per chiudere dubbi e definire scope.</p>
+        </div>
+        <div class="service-card reveal">
+            <div class="service-icon"><i class="fas fa-file-signature"></i></div>
+            <h3>3) Proposta</h3>
+            <p>Ricevi una proposta chiara con roadmap, deliverable e tempistiche.</p>
+        </div>
+    </div>
+
+    <div class="section-title reveal" style="margin-top: 4rem;">
+        <h2>Domande frequenti</h2>
+        <p>Le risposte alle domande più comuni prima di iniziare.</p>
+    </div>
+
+    <div class="faq-section reveal">
+        <div class="faq-grid" style="margin-top: 1.5rem;">
+            <div class="faq-item">
+                <h3>Lavorate da remoto?</h3>
+                <p>Sì, operiamo da remoto in tutta Italia. Su appuntamento siamo disponibili a Bologna e nelle aree limitrofe.</p>
+            </div>
+            <div class="faq-item">
+                <h3>In quanto tempo rispondete?</h3>
+                <p>In genere entro 24 ore nei giorni lavorativi. Se la richiesta è dettagliata, acceleriamo molto l’allineamento.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Che informazioni servono per iniziare?</h3>
+                <p>Obiettivo del progetto, esempio di siti di riferimento, funzionalità richieste e tempistiche ideali.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Fate anche SEO?</h3>
+                <p>Sì. Impostiamo SEO tecnica, performance e struttura contenuti per una base solida e indicizzabile.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Potete integrare AI e automazioni?</h3>
+                <p>Sì. Chatbot, agenti AI, automazioni email e integrazioni con CRM/calendari per ridurre lavoro manuale.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Come gestite tempi e consegna?</h3>
+                <p>Definiamo una roadmap con milestone e consegne progressive, così vedi avanzamenti reali e puoi dare feedback senza blocchi.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="cta-section reveal" style="margin-top: 4rem;">
+        <div class="cta-content">
+            <h2>Vuoi partire subito?</h2>
+            <p>Apri l’assistente e configura la tua richiesta in 60 secondi.</p>
+            <br>
+            <a href="#" class="btn-primary open-chat-btn" style="font-size: 1.1rem; padding: 1.1rem 2.2rem;">
+                <i class="fas fa-robot"></i> Avvia Assistente Preventivo
+            </a>
         </div>
     </div>
 </div>

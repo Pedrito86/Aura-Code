@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block title %}{{ sector.seo_title }}{% endblock %}
+{% block meta_description %}{{ sector.seo_description }}{% endblock %}
+{% block meta_keywords %}{{ sector.seo_keywords }}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="hero">
+        <h1><i class="{{ sector.icon }}"></i> {{ sector.h1 }}</h1>
+        <p class="reveal">{{ sector.intro }}</p>
+        <br>
+        <a href="{{ url_for('contact') }}" class="btn-primary reveal">
+            <i class="fas fa-comments"></i> Richiedi una consulenza gratuita
+        </a>
+        {% if sector.examples_anchor %}
+        <a href="{{ url_for('sector_examples') }}#{{ sector.examples_anchor }}" class="btn-secondary reveal" style="margin-left: 12px;">
+            <i class="fas fa-gem"></i> Scopri la Showcase
+        </a>
+        {% endif %}
+    </div>
+
+    <div class="section-title reveal">
+        <h2>Perché scegliere una soluzione dedicata</h2>
+        <p>Contenuti, struttura e funzionalità pensati per convertire utenti in richieste.</p>
+    </div>
+
+    <div class="services-grid">
+        <div class="service-card reveal">
+            <div class="service-icon">
+                <i class="fas fa-bullseye"></i>
+            </div>
+            <h3>Obiettivo</h3>
+            <p>{{ sector.objective }}</p>
+        </div>
+
+        <div class="service-card reveal">
+            <div class="service-icon">
+                <i class="fas fa-layer-group"></i>
+            </div>
+            <h3>Funzionalità chiave</h3>
+            <ul class="pricing-features" style="margin-top: 1rem;">
+                {% for item in sector.features %}
+                <li><i class="fas fa-check"></i> {{ item }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="service-card reveal">
+            <div class="service-icon">
+                <i class="fas fa-chart-line"></i>
+            </div>
+            <h3>Risultati attesi</h3>
+            <ul class="pricing-features" style="margin-top: 1rem;">
+                {% for item in sector.outcomes %}
+                <li><i class="fas fa-check"></i> {{ item }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <div class="cta-section reveal" style="margin-top: 4rem;">
+        <div class="cta-content">
+            <h2>Vuoi un progetto per {{ sector.name }}?</h2>
+            <p>Parlaci del tuo obiettivo e prepariamo una proposta chiara e orientata ai risultati.</p>
+            <br>
+            <a href="{{ url_for('contact') }}" class="btn-primary">
+                <i class="fas fa-calendar-check"></i> Prenota una consulenza
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

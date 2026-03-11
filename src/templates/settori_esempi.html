@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}Esempi per Settore - Aura Code{% endblock %}
+{% block meta_description %}Esempi di siti per settore: layout e schermate pensate per performance, conversione e SEO locale. Ispirazioni concrete per il tuo progetto.{% endblock %}
 
 {% block content %}
 <div class="container">
@@ -778,7 +779,7 @@
             </div>
         </div>
 
-        <div class="mockup-grid">
+        <div class="mockup-grid mockup-grid--local">
             <div class="mockup">
                 <div class="mockup-topbar">
                     <span class="mockup-dot"></span><span class="mockup-dot"></span><span class="mockup-dot"></span>
@@ -795,22 +796,69 @@
                             </div>
                         </div>
 
+                        <div class="mockup-mini-hero" style="text-align: center; margin: 0 auto;">
+                            <div class="mockup-mini-title">Palestra Zenith</div>
+                            <div class="mockup-mini-subtitle">Forza, performance e benessere: corsi quotidiani e PT su misura.</div>
+                        </div>
+
                         <div class="mockup-center-stage">
-                            <div class="mockup-media-card">
+                            <div class="mockup-media-card mockup-media-card--overlay">
                                 <img
                                     class="mockup-media-card__img"
                                     src="https://images.pexels.com/photos/29224211/pexels-photo-29224211.jpeg?auto=compress&cs=tinysrgb&w=1200"
                                     alt="Foto sala pesi per mockup home"
                                     loading="lazy"
                                 >
-                                <div class="mockup-media-card__body">
-                                    <div class="mockup-mini-eyebrow">Sala pesi • Corsi • PT</div>
-                                    <div class="mockup-mini-title">Palestra Zenith</div>
-                                    <div class="mockup-mini-subtitle">Prenota una prova gratuita di 7 giorni.</div>
-                                    <div class="mockup-row" style="margin: 10px 0 0;">
+                                <div class="mockup-media-card__overlay">
+                                    <div class="mockup-row" style="margin: 0;">
                                         <div class="mockup-pill">Prenota prova</div>
                                         <div class="mockup-pill secondary">Vedi corsi</div>
                                     </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mockup-section mockup-section--raised">
+                            <div class="mockup-section-header">
+                                <div class="mockup-section-title">Corsi in evidenza</div>
+                                <div class="mockup-section-action">Vedi tutti</div>
+                            </div>
+                            <div class="mockup-cards mockup-cards--spacious">
+                                <div class="mockup-card mockup-card--labeled">
+                                    <img
+                                        class="mockup-card-media"
+                                        src="https://images.pexels.com/photos/1552242/pexels-photo-1552242.jpeg?auto=compress&cs=tinysrgb&w=1200"
+                                        alt="Corso Functional Training"
+                                        loading="lazy"
+                                    >
+                                    <div class="mockup-card-label">Functional Training</div>
+                                </div>
+                                <div class="mockup-card mockup-card--labeled">
+                                    <img
+                                        class="mockup-card-media"
+                                        src="https://images.pexels.com/photos/3823039/pexels-photo-3823039.jpeg?auto=compress&cs=tinysrgb&w=1200"
+                                        alt="Corso Yoga & Mobility"
+                                        loading="lazy"
+                                    >
+                                    <div class="mockup-card-label">Yoga & Mobility</div>
+                                </div>
+                                <div class="mockup-card mockup-card--labeled">
+                                    <img
+                                        class="mockup-card-media"
+                                        src="https://images.pexels.com/photos/841130/pexels-photo-841130.jpeg?auto=compress&cs=tinysrgb&w=1200"
+                                        alt="Corso HIIT"
+                                        loading="lazy"
+                                    >
+                                    <div class="mockup-card-label">HIIT</div>
+                                </div>
+                                <div class="mockup-card mockup-card--labeled">
+                                    <img
+                                        class="mockup-card-media"
+                                        src="https://images.pexels.com/photos/4056723/pexels-photo-4056723.jpeg?auto=compress&cs=tinysrgb&w=1200"
+                                        alt="Corso Pilates"
+                                        loading="lazy"
+                                    >
+                                    <div class="mockup-card-label">Pilates</div>
                                 </div>
                             </div>
                         </div>
@@ -921,6 +969,32 @@
                                 <div class="mockup-hours-row"><span>Lun–Ven</span><span>07:00–22:00</span></div>
                                 <div class="mockup-hours-row"><span>Sabato</span><span>08:00–20:00</span></div>
                                 <div class="mockup-hours-row"><span>Domenica</span><span>Chiuso</span></div>
+                            </div>
+                        </div>
+
+                        <div class="mockup-section mockup-section--raised">
+                            <div class="mockup-mini-title">Scrivici</div>
+                            <div class="mockup-mini-subtitle">Risposta rapida • senza attese</div>
+
+                            <div class="mockup-form">
+                                <div class="mockup-form-grid">
+                                    <div class="mockup-form-field">
+                                        <div class="mockup-field-label">Nome</div>
+                                        <div class="mockup-field"></div>
+                                    </div>
+                                    <div class="mockup-form-field">
+                                        <div class="mockup-field-label">Email</div>
+                                        <div class="mockup-field"></div>
+                                    </div>
+                                </div>
+                                <div class="mockup-form-field">
+                                    <div class="mockup-field-label">Messaggio</div>
+                                    <div class="mockup-field mockup-field--tall"></div>
+                                </div>
+                                <div class="mockup-form-actions">
+                                    <div class="mockup-pill">Invia</div>
+                                    <div class="mockup-form-note">Privacy • risposta entro 24h</div>
+                                </div>
                             </div>
                         </div>
                     </div>

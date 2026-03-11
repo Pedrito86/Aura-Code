@@ -3,11 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Aura Code è una Web Agency innovativa specializzata in sviluppo siti web, e-commerce, software gestionale custom e soluzioni di Intelligenza Artificiale per aziende.">
-    <meta name="keywords" content="web agency, realizzazione siti web, sviluppo software, intelligenza artificiale, e-commerce, chatbot AI, automazione aziendale, preventivo sito web">
-    <meta name="author" content="Aura Code Team">
-    <meta name="robots" content="index, follow">
     <title>{% block title %}Aura Code - Web Agency & AI Solutions{% endblock %}</title>
+    <meta name="description" content="{% block meta_description %}Aura Code è una Web Agency innovativa specializzata in sviluppo siti web, e-commerce, software gestionale custom e soluzioni di Intelligenza Artificiale per aziende.{% endblock %}">
+    <meta name="keywords" content="{% block meta_keywords %}web agency, realizzazione siti web, sviluppo software, intelligenza artificiale, e-commerce, chatbot AI, automazione aziendale, preventivo sito web{% endblock %}">
+    <meta name="author" content="Aura Code Team">
+    <meta name="robots" content="{% block meta_robots %}index, follow{% endblock %}">
+    <link rel="canonical" href="{{ request.base_url }}">
+    <meta property="og:locale" content="it_IT">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Aura Code">
+    <meta property="og:title" content="{{ self.title()|striptags|trim }}">
+    <meta property="og:description" content="{{ self.meta_description()|striptags|trim }}">
+    <meta property="og:url" content="{{ request.base_url }}">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="{{ self.title()|striptags|trim }}">
+    <meta name="twitter:description" content="{{ self.meta_description()|striptags|trim }}">
+    <script type="application/ld+json">{{ {"@context":"https://schema.org","@type":"Organization","name":"Aura Code","url":request.url_root.rstrip("/"),"email":"hello@auracode.it"} | tojson }}</script>
+    <script type="application/ld+json">{{ {"@context":"https://schema.org","@type":"WebSite","name":"Aura Code","url":request.url_root.rstrip("/")} | tojson }}</script>
     <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Custom CSS -->
@@ -86,6 +98,12 @@
                     <a href="#"><i class="fab fa-facebook"></i></a>
                     <a href="#"><i class="fab fa-linkedin"></i></a>
                     <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+                <div class="payment-icons" aria-label="Metodi di pagamento">
+                    <i class="fab fa-cc-paypal" title="PayPal" aria-hidden="true"></i>
+                    <i class="fab fa-cc-stripe" title="Stripe" aria-hidden="true"></i>
+                    <i class="fab fa-payoneer" title="Payoneer" aria-hidden="true"></i>
+                    <span class="payment-badge" title="Satispay">Satispay</span>
                 </div>
             </div>
         </div>
