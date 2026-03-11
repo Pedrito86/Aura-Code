@@ -1193,6 +1193,1279 @@ img {
     margin-top: 0.75rem;
 }
 
+.mockup-screenshot {
+    width: 100%;
+    display: block;
+    border-radius: 14px;
+    margin-top: 0.75rem;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.mockup-screenshot--banner {
+    aspect-ratio: 21 / 9;
+}
+
+.mockup-screenshot--hero {
+    aspect-ratio: 16 / 10;
+}
+
+.mockup-screenshot--square {
+    aspect-ratio: 1 / 1;
+}
+
+.mockup-screenshot--fill {
+    height: 100%;
+    aspect-ratio: auto;
+}
+
+.mockup-page {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+}
+
+.mockup-page--lux {
+    padding: 0.95rem;
+    border-radius: 16px;
+    background: rgba(15, 23, 42, 0.46);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 14px 32px rgba(0, 0, 0, 0.28);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    position: relative;
+    overflow: hidden;
+    --mockup-accent: rgba(96, 165, 250, 0.9);
+    --mockup-accent-soft: rgba(96, 165, 250, 0.18);
+    --mockup-accent-border: rgba(96, 165, 250, 0.25);
+}
+
+.mockup-center-stage {
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.25rem 0;
+}
+
+.mockup-media-card {
+    width: min(420px, 100%);
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(2, 6, 23, 0.42);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+}
+
+.mockup-media-card__img {
+    width: 100%;
+    height: 180px;
+    display: block;
+    object-fit: cover;
+}
+
+.mockup-media-card__body {
+    padding: 0.85rem 0.9rem 0.95rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.mockup-page--split .mockup-screenshot {
+    margin-top: 0;
+}
+
+.mockup-theme--restaurant-home {
+    --mockup-accent: rgba(251, 191, 36, 0.92);
+    --mockup-accent-soft: rgba(251, 191, 36, 0.16);
+    --mockup-accent-border: rgba(251, 191, 36, 0.26);
+    background:
+        radial-gradient(circle at 20% 25%, rgba(251, 191, 36, 0.18) 0%, transparent 55%),
+        radial-gradient(circle at 85% 30%, rgba(239, 68, 68, 0.12) 0%, transparent 50%),
+        linear-gradient(135deg, rgba(15, 23, 42, 0.56), rgba(2, 6, 23, 0.74));
+}
+
+.mockup-theme--restaurant-home .mockup-section--raised {
+    padding: 0.7rem;
+}
+
+.mockup-theme--restaurant-home .mockup-card {
+    height: 64px;
+}
+
+.mockup-theme--restaurant-menu {
+    --mockup-accent: rgba(245, 158, 11, 0.92);
+    --mockup-accent-soft: rgba(245, 158, 11, 0.16);
+    --mockup-accent-border: rgba(245, 158, 11, 0.26);
+    background:
+        radial-gradient(circle at 15% 20%, rgba(245, 158, 11, 0.18) 0%, transparent 52%),
+        radial-gradient(circle at 75% 55%, rgba(34, 197, 94, 0.12) 0%, transparent 55%),
+        linear-gradient(135deg, rgba(15, 23, 42, 0.52), rgba(2, 6, 23, 0.78));
+}
+
+.mockup-theme--restaurant-reservation {
+    --mockup-accent: rgba(34, 197, 94, 0.9);
+    --mockup-accent-soft: rgba(34, 197, 94, 0.14);
+    --mockup-accent-border: rgba(34, 197, 94, 0.24);
+    background:
+        radial-gradient(circle at 20% 75%, rgba(34, 197, 94, 0.16) 0%, transparent 55%),
+        radial-gradient(circle at 85% 25%, rgba(96, 165, 250, 0.12) 0%, transparent 55%),
+        linear-gradient(135deg, rgba(15, 23, 42, 0.5), rgba(2, 6, 23, 0.78));
+}
+
+.mockup-theme--restaurant-home,
+.mockup-theme--restaurant-menu,
+.mockup-theme--restaurant-reservation {
+    height: clamp(440px, 56vh, 520px);
+}
+
+.mockup-theme--startup-landing {
+    --mockup-accent: rgba(129, 216, 208, 0.92);
+    --mockup-accent-soft: rgba(129, 216, 208, 0.18);
+    --mockup-accent-border: rgba(129, 216, 208, 0.28);
+    background:
+        radial-gradient(circle at 18% 18%, rgba(129, 216, 208, 0.34) 0%, transparent 60%),
+        radial-gradient(circle at 85% 32%, rgba(94, 234, 212, 0.22) 0%, transparent 62%),
+        radial-gradient(circle at 35% 92%, rgba(165, 243, 252, 0.18) 0%, transparent 58%),
+        linear-gradient(135deg, rgba(15, 118, 110, 0.28), rgba(15, 23, 42, 0.76));
+}
+
+.mockup-theme--startup-onboarding {
+    --mockup-accent: rgba(129, 216, 208, 0.92);
+    --mockup-accent-soft: rgba(129, 216, 208, 0.16);
+    --mockup-accent-border: rgba(129, 216, 208, 0.26);
+    background:
+        radial-gradient(circle at 20% 72%, rgba(129, 216, 208, 0.3) 0%, transparent 62%),
+        radial-gradient(circle at 82% 20%, rgba(165, 243, 252, 0.22) 0%, transparent 64%),
+        radial-gradient(circle at 55% 8%, rgba(94, 234, 212, 0.2) 0%, transparent 58%),
+        linear-gradient(135deg, rgba(13, 148, 136, 0.26), rgba(15, 23, 42, 0.76));
+}
+
+.mockup-theme--startup-dashboard {
+    --mockup-accent: rgba(129, 216, 208, 0.92);
+    --mockup-accent-soft: rgba(129, 216, 208, 0.18);
+    --mockup-accent-border: rgba(129, 216, 208, 0.28);
+    background:
+        radial-gradient(circle at 18% 28%, rgba(165, 243, 252, 0.26) 0%, transparent 64%),
+        radial-gradient(circle at 82% 68%, rgba(129, 216, 208, 0.22) 0%, transparent 66%),
+        radial-gradient(circle at 55% 10%, rgba(94, 234, 212, 0.18) 0%, transparent 60%),
+        linear-gradient(135deg, rgba(15, 118, 110, 0.3), rgba(15, 23, 42, 0.78));
+}
+
+.mockup-theme--startup-landing,
+.mockup-theme--startup-onboarding,
+.mockup-theme--startup-dashboard {
+    height: clamp(560px, 70vh, 700px);
+}
+
+.mockup-theme--property-listing,
+.mockup-theme--property-detail,
+.mockup-theme--property-contact {
+    height: clamp(600px, 70vh, 700px);
+}
+
+.mockup-theme--property-listing {
+    --mockup-accent: rgba(34, 197, 94, 0.9);
+    --mockup-accent-soft: rgba(34, 197, 94, 0.14);
+    --mockup-accent-border: rgba(34, 197, 94, 0.24);
+    background:
+        radial-gradient(circle at 20% 20%, rgba(34, 197, 94, 0.18) 0%, transparent 55%),
+        radial-gradient(circle at 82% 35%, rgba(96, 165, 250, 0.12) 0%, transparent 55%),
+        linear-gradient(135deg, rgba(15, 23, 42, 0.5), rgba(2, 6, 23, 0.8));
+}
+
+.mockup-theme--property-detail {
+    --mockup-accent: rgba(20, 184, 166, 0.92);
+    --mockup-accent-soft: rgba(20, 184, 166, 0.14);
+    --mockup-accent-border: rgba(20, 184, 166, 0.24);
+    background:
+        radial-gradient(circle at 20% 75%, rgba(20, 184, 166, 0.2) 0%, transparent 58%),
+        radial-gradient(circle at 85% 30%, rgba(251, 191, 36, 0.1) 0%, transparent 60%),
+        linear-gradient(135deg, rgba(15, 23, 42, 0.5), rgba(2, 6, 23, 0.8));
+}
+
+.mockup-theme--property-contact {
+    --mockup-accent: rgba(59, 130, 246, 0.92);
+    --mockup-accent-soft: rgba(59, 130, 246, 0.16);
+    --mockup-accent-border: rgba(59, 130, 246, 0.26);
+    background:
+        radial-gradient(circle at 18% 25%, rgba(59, 130, 246, 0.22) 0%, transparent 55%),
+        radial-gradient(circle at 80% 65%, rgba(34, 197, 94, 0.12) 0%, transparent 58%),
+        linear-gradient(135deg, rgba(15, 23, 42, 0.5), rgba(2, 6, 23, 0.8));
+}
+
+.mockup-theme--local-home {
+    --mockup-accent: rgba(14, 165, 233, 0.92);
+    --mockup-accent-soft: rgba(14, 165, 233, 0.16);
+    --mockup-accent-border: rgba(14, 165, 233, 0.26);
+    height: clamp(560px, 70vh, 700px);
+    gap: 0;
+    background:
+        radial-gradient(circle at 20% 30%, rgba(14, 165, 233, 0.2) 0%, transparent 56%),
+        radial-gradient(circle at 82% 70%, rgba(34, 197, 94, 0.12) 0%, transparent 60%),
+        linear-gradient(135deg, rgba(15, 23, 42, 0.5), rgba(2, 6, 23, 0.82));
+}
+
+.mockup-theme--local-reviews {
+    --mockup-accent: rgba(244, 63, 94, 0.92);
+    --mockup-accent-soft: rgba(244, 63, 94, 0.14);
+    --mockup-accent-border: rgba(244, 63, 94, 0.24);
+    background:
+        radial-gradient(circle at 18% 20%, rgba(244, 63, 94, 0.2) 0%, transparent 58%),
+        radial-gradient(circle at 85% 35%, rgba(129, 140, 248, 0.12) 0%, transparent 60%),
+        linear-gradient(135deg, rgba(15, 23, 42, 0.52), rgba(2, 6, 23, 0.82));
+}
+
+.mockup-theme--local-contacts {
+    --mockup-accent: rgba(34, 197, 94, 0.9);
+    --mockup-accent-soft: rgba(34, 197, 94, 0.14);
+    --mockup-accent-border: rgba(34, 197, 94, 0.24);
+    background:
+        radial-gradient(circle at 18% 70%, rgba(34, 197, 94, 0.18) 0%, transparent 58%),
+        radial-gradient(circle at 85% 25%, rgba(96, 165, 250, 0.12) 0%, transparent 60%),
+        linear-gradient(135deg, rgba(15, 23, 42, 0.52), rgba(2, 6, 23, 0.84));
+}
+
+.mockup-banner {
+    position: relative;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.mockup-banner--full {
+    margin: 0 -0.95rem;
+    border-radius: 0;
+    border-left: 0;
+    border-right: 0;
+}
+
+.mockup-banner--bleed-top {
+    margin-top: -0.95rem;
+    border-top: 0;
+}
+
+.mockup-banner--angled {
+    clip-path: polygon(0 0, 100% 0, 100% 84%, 0 100%);
+}
+
+.mockup-banner .mockup-screenshot {
+    margin-top: 0;
+    border: 0;
+    border-radius: 0;
+}
+
+.mockup-banner-overlay {
+    position: absolute;
+    inset: 0;
+    padding: 0.95rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.62) 0%, rgba(0, 0, 0, 0.22) 48%, rgba(0, 0, 0, 0.7) 100%);
+}
+
+.mockup-banner-overlay--compact {
+    justify-content: flex-end;
+    gap: 0.35rem;
+}
+
+.mockup-banner-overlay--top {
+    justify-content: flex-start;
+    padding-top: 0.65rem;
+    gap: 0.35rem;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.66) 0%, rgba(0, 0, 0, 0.24) 42%, rgba(0, 0, 0, 0) 70%);
+}
+
+.mockup-banner-overlay--gallery {
+    justify-content: space-between;
+    padding: 0.75rem;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.22) 0%, rgba(0, 0, 0, 0.04) 46%, rgba(0, 0, 0, 0.35) 100%);
+}
+
+.mockup-banner--gym {
+    flex: 1;
+    min-height: 0;
+}
+
+.mockup-banner-overlay--gym {
+    justify-content: flex-end;
+    gap: 0.35rem;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.18) 0%, rgba(0, 0, 0, 0.1) 38%, rgba(0, 0, 0, 0.78) 100%);
+}
+
+.mockup-carousel-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.mockup-carousel-btn {
+    width: 34px;
+    height: 34px;
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    font-weight: 900;
+    color: rgba(255, 255, 255, 0.92);
+    background: rgba(15, 23, 42, 0.55);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.mockup-carousel-dots {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.mockup-carousel-dots span {
+    width: 6px;
+    height: 6px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.32);
+}
+
+.mockup-carousel-dots span.active {
+    width: 18px;
+    background: rgba(255, 255, 255, 0.78);
+}
+
+.mockup-mini-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+}
+
+.mockup-mini-nav--bar {
+    padding: 12px 16px;
+    margin: -0.95rem -0.95rem 0;
+    border-radius: 0;
+    background: rgba(2, 6, 23, 0.55);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 12px 26px rgba(0, 0, 0, 0.18);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+}
+
+.mockup-mini-logo {
+    width: 34px;
+    height: 34px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.92);
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.mockup-mini-links {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.mockup-mini-links--navbar {
+    flex-wrap: nowrap;
+    gap: 12px;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.mockup-mini-links span {
+    padding: 6px 10px;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.82);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.mockup-mini-links--navbar span {
+    padding: 0;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    font-size: 0.78rem;
+    font-weight: 800;
+    color: rgba(255, 255, 255, 0.82);
+    letter-spacing: 0.01em;
+}
+
+.mockup-mini-links--navbar span:first-child {
+    color: rgba(255, 255, 255, 0.92);
+}
+
+.mockup-mini-hero {
+    max-width: 90%;
+}
+
+.mockup-mini-eyebrow {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.78);
+    letter-spacing: 0.02em;
+    margin-bottom: 6px;
+}
+
+.mockup-mini-title {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: rgba(255, 255, 255, 0.96);
+    line-height: 1.15;
+    margin-bottom: 6px;
+}
+
+.mockup-mini-subtitle {
+    font-size: 0.86rem;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.35;
+    margin-bottom: 10px;
+}
+
+.mockup-mini-footer {
+    margin-top: auto;
+    padding-top: 0.45rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.mockup-mini-footer-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+}
+
+.mockup-mini-footer-title {
+    font-size: 0.74rem;
+    font-weight: 900;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.mockup-mini-footer-link {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.66);
+    line-height: 1.2;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.mockup-mini-footer-col {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.mockup-mini-footer-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 8px;
+}
+
+.mockup-mini-footer-note {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.56);
+    white-space: nowrap;
+}
+
+.mockup-mini-footer-admin {
+    font-size: 0.72rem;
+    font-weight: 800;
+    color: rgba(255, 255, 255, 0.84);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 999px;
+    padding: 5px 9px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 54%;
+}
+
+.mockup-section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.mockup-section--raised {
+    padding: 0.9rem;
+    border-radius: 16px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.03));
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.22);
+}
+
+.mockup-landing-details {
+    padding: 0.65rem;
+    gap: 0.55rem;
+}
+
+.mockup-landing-details .mockup-section-title {
+    font-size: 0.82rem;
+}
+
+.mockup-landing-details .mockup-section-action {
+    font-size: 0.76rem;
+}
+
+.mockup-landing-details .mockup-menu-item {
+    padding: 6px 8px;
+    border-radius: 10px;
+    font-size: 0.78rem;
+}
+
+.mockup-section--flat {
+    padding: 0.85rem;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.mockup-section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    min-width: 0;
+}
+
+.mockup-section-title {
+    flex: 1;
+    min-width: 0;
+    font-weight: 800;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.9rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.mockup-section-action {
+    font-weight: 700;
+    color: var(--mockup-accent);
+    font-size: 0.82rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 42%;
+}
+
+.mockup-split {
+    display: grid;
+    grid-template-columns: 1fr 1.05fr;
+    gap: 0.9rem;
+    align-items: start;
+}
+
+.mockup-split .mockup-screenshot {
+    margin-top: 0;
+}
+
+.mockup-split--reverse > :first-child {
+    grid-column: 2;
+}
+
+.mockup-split--reverse > :last-child {
+    grid-column: 1;
+}
+
+.mockup-split-media {
+    position: relative;
+}
+
+.mockup-split-figure {
+    position: relative;
+}
+
+.mockup-split-badge {
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
+    padding: 6px 10px;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: rgba(255, 255, 255, 0.92);
+    background: rgba(15, 23, 42, 0.55);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(10px);
+}
+
+.mockup-oblique-split {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.mockup-oblique-split--square {
+    aspect-ratio: 1 / 1;
+}
+
+.mockup-oblique-split--fill {
+    flex: 1;
+    aspect-ratio: auto;
+    min-height: 0;
+}
+
+.mockup-oblique-split--full {
+    margin: 0 -0.95rem -0.95rem;
+    border-radius: 0;
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 0;
+}
+
+.mockup-oblique-split::after {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: 51%;
+    width: 3px;
+    height: 220%;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.22);
+    box-shadow: 0 0 0 1px rgba(15, 23, 42, 0.35);
+    transform: rotate(-8deg);
+    pointer-events: none;
+}
+
+.mockup-oblique-side {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+}
+
+.mockup-oblique-side::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.06) 0%, rgba(0, 0, 0, 0.62) 100%);
+}
+
+.mockup-oblique-side--left {
+    clip-path: polygon(0 0, 58% 0, 44% 100%, 0 100%);
+}
+
+.mockup-oblique-side--right {
+    clip-path: polygon(58% 0, 100% 0, 100% 100%, 44% 100%);
+}
+
+.mockup-oblique-content {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 12px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    z-index: 2;
+}
+
+.mockup-oblique-card {
+    width: min(320px, 82%);
+    padding: 12px 12px 10px;
+    border-radius: 16px;
+    background: rgba(2, 6, 23, 0.62);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+}
+
+.mockup-oblique-card .mockup-mini-subtitle {
+    font-size: 0.78rem;
+    margin-bottom: 0;
+}
+
+.mockup-oblique-side--right .mockup-oblique-content {
+    align-items: flex-end;
+    text-align: right;
+}
+
+.mockup-oblique-actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 2px;
+}
+
+.mockup-oblique-actions .mockup-pill {
+    font-size: 0.82rem;
+    padding: 7px 10px;
+}
+
+.mockup-split-content {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.mockup-menu-title {
+    font-weight: 900;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.92rem;
+    margin-top: 2px;
+}
+
+.mockup-menu-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 8px 10px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.82);
+    font-weight: 700;
+    font-size: 0.86rem;
+}
+
+.mockup-menu-item--active {
+    background: rgba(15, 23, 42, 0.55);
+    border-color: var(--mockup-accent-border);
+    box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.35);
+    transform: translateY(1px);
+}
+
+.mockup-menu-item--active .mockup-menu-price {
+    color: rgba(255, 255, 255, 0.86);
+}
+
+.mockup-menu-price {
+    color: rgba(255, 255, 255, 0.72);
+    font-weight: 800;
+}
+
+.mockup-menu-divider {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.08);
+    margin: 6px 0;
+}
+
+.mockup-menu-footer {
+    margin-top: 2px;
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.mockup-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.mockup-form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.8rem;
+}
+
+.mockup-form-grid--three {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.mockup-form-field {
+    display: flex;
+    flex-direction: column;
+}
+
+.mockup-field-label {
+    font-size: 0.78rem;
+    font-weight: 800;
+    color: rgba(255, 255, 255, 0.78);
+    margin-bottom: 8px;
+}
+
+.mockup-field--tall {
+    height: 78px;
+}
+
+.mockup-form-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.mockup-form-note {
+    font-size: 0.78rem;
+    color: rgba(255, 255, 255, 0.65);
+    font-weight: 700;
+}
+
+.mockup-reservation-card {
+    gap: 10px;
+}
+
+.mockup-booking-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    align-items: end;
+}
+
+.mockup-booking-grid .mockup-field {
+    margin-bottom: 0;
+}
+
+.mockup-booking-grid .mockup-field-label {
+    margin-bottom: 6px;
+}
+
+.mockup-booking-action {
+    display: flex;
+    align-items: flex-end;
+}
+
+.mockup-booking-action .mockup-pill {
+    width: 100%;
+    text-align: center;
+}
+
+.mockup-progress {
+    display: flex;
+    gap: 10px;
+}
+
+.mockup-progress span {
+    flex: 1;
+    height: 7px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.mockup-progress span.active {
+    background: rgba(96, 165, 250, 0.55);
+    border-color: rgba(96, 165, 250, 0.4);
+}
+
+.mockup-filter-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.mockup-filter-row span {
+    padding: 6px 10px;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: rgba(255, 255, 255, 0.78);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.mockup-property-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.mockup-property-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.mockup-property-footer .mockup-line {
+    margin-bottom: 0;
+}
+
+.mockup-property-card {
+    display: flex;
+    gap: 10px;
+    padding: 10px;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.mockup-property-thumb {
+    width: 76px;
+    height: 58px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, rgba(96, 165, 250, 0.22), rgba(167, 139, 250, 0.16));
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    flex: 0 0 auto;
+    background-size: cover;
+    background-position: center;
+}
+
+.mockup-property-lines {
+    flex: 1;
+    min-width: 0;
+}
+
+.mockup-property-brand {
+    width: 86%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 12px;
+    font-size: 1.35rem;
+    font-weight: 900;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.94);
+}
+
+.mockup-property-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 12px;
+}
+
+.mockup-mini-nav--property-bar {
+    margin: 12px -0.95rem 0;
+    padding: 10px 16px;
+}
+
+.mockup-mini-nav--property-bar .mockup-search {
+    margin-bottom: 0;
+    flex: 1;
+}
+
+.mockup-mini-nav--property-bar .mockup-search--filled {
+    height: 40px;
+    font-size: 0.84rem;
+}
+
+.mockup-mini-nav--property-bar .mockup-mini-links--navbar {
+    flex: 0 0 auto;
+}
+
+.mockup-mini-nav--property-top .mockup-search {
+    margin-bottom: 0;
+    flex: 1;
+}
+
+.mockup-mini-nav--property-top .mockup-search--filled {
+    height: 40px;
+    font-size: 0.84rem;
+}
+
+.mockup-mini-nav--property-top .mockup-mini-links--navbar {
+    flex: 0 0 auto;
+}
+
+.mockup-banner--contact {
+    margin-top: 0.85rem;
+    border-radius: 18px;
+}
+
+.mockup-banner--contact .mockup-screenshot {
+    border-radius: 18px;
+}
+
+.mockup-property-contact-card {
+    margin-top: 0.85rem;
+    padding: 0.75rem;
+    gap: 8px;
+}
+
+.mockup-property-contact-card .mockup-form {
+    gap: 0.55rem;
+}
+
+.mockup-property-contact-card .mockup-form-grid {
+    gap: 0.55rem;
+}
+
+.mockup-property-contact-card .mockup-field-label {
+    margin-bottom: 6px;
+    font-size: 0.74rem;
+}
+
+.mockup-property-contact-card .mockup-field {
+    height: 38px;
+    margin-bottom: 0;
+}
+
+.mockup-property-contact-card .mockup-field--tall {
+    height: 64px;
+}
+
+.mockup-property-contact-card .mockup-form-actions {
+    margin-top: 2px;
+}
+
+.mockup-property-detail-card {
+    margin-top: 0.85rem;
+    padding: 0.85rem;
+    gap: 10px;
+}
+
+.mockup-property-description {
+    margin-top: 10px;
+}
+
+.mockup-property-description .mockup-line {
+    height: 9px;
+    margin-bottom: 8px;
+}
+
+.mockup-search--filled {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0 16px;
+    color: rgba(255, 255, 255, 0.78);
+    font-weight: 800;
+    font-size: 0.85rem;
+}
+
+.mockup-search-icon {
+    width: 26px;
+    height: 26px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.7);
+    flex: 0 0 auto;
+}
+
+.mockup-search-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.mockup-property-segments {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.mockup-property-segment {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.mockup-property-segment span {
+    padding: 6px 10px;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 900;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.mockup-property-segment span.active {
+    color: rgba(255, 255, 255, 0.92);
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.mockup-property-lines .mockup-line {
+    height: 9px;
+    margin-bottom: 9px;
+}
+
+.mockup-thumb-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.mockup-thumb {
+    height: 56px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.mockup-review-card {
+    padding: 12px;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.mockup-review-top {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.mockup-avatar {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(96, 165, 250, 0.28), rgba(167, 139, 250, 0.18));
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    flex: 0 0 auto;
+}
+
+.mockup-review-meta {
+    flex: 1;
+}
+
+.mockup-review-meta .mockup-line {
+    height: 8px;
+    margin: 0;
+}
+
+.mockup-stars {
+    margin-top: 6px;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.mockup-review-text {
+    height: 38px;
+    border-radius: 12px;
+    background: rgba(15, 23, 42, 0.32);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.mockup-review-layout {
+    display: grid;
+    grid-template-columns: 0.95fr 1.05fr;
+    gap: 0.9rem;
+    align-items: start;
+}
+
+.mockup-review-summary {
+    position: relative;
+}
+
+.mockup-review-summary .mockup-screenshot {
+    margin-top: 0;
+}
+
+.mockup-review-badge {
+    position: absolute;
+    left: 12px;
+    bottom: 12px;
+    padding: 10px 12px;
+    border-radius: 16px;
+    background: rgba(15, 23, 42, 0.62);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.mockup-review-badge--below {
+    position: static;
+    width: fit-content;
+    margin-top: 10px;
+}
+
+.mockup-review-score {
+    font-size: 1.4rem;
+    font-weight: 900;
+    color: rgba(255, 255, 255, 0.95);
+    line-height: 1;
+}
+
+.mockup-review-caption {
+    margin-top: 6px;
+    font-size: 0.78rem;
+    font-weight: 800;
+    color: rgba(255, 255, 255, 0.68);
+}
+
+.mockup-review-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.mockup-map-hero {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.mockup-map-hero .mockup-screenshot {
+    margin-top: 0;
+    border: 0;
+    border-radius: 0;
+}
+
+.mockup-map-overlay {
+    position: absolute;
+    inset: 0;
+    padding: 0.95rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 0.8rem;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.12) 45%, rgba(0, 0, 0, 0.74) 100%);
+}
+
+.mockup-quick-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.mockup-hours {
+    padding: 12px;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.mockup-hours-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    font-size: 0.82rem;
+    font-weight: 800;
+    color: rgba(255, 255, 255, 0.74);
+    padding: 6px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.mockup-hours-row:last-child {
+    border-bottom: 0;
+}
+
 .mockup-title {
     font-weight: 700;
     color: var(--white);
@@ -1221,8 +2494,8 @@ img {
 .mockup-pill {
     padding: 8px 12px;
     border-radius: 999px;
-    background: rgba(96, 165, 250, 0.18);
-    border: 1px solid rgba(96, 165, 250, 0.25);
+    background: var(--mockup-accent-soft);
+    border: 1px solid var(--mockup-accent-border);
     color: rgba(255, 255, 255, 0.9);
     font-weight: 700;
     font-size: 0.9rem;
@@ -1251,6 +2524,28 @@ img {
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.06);
     margin-top: 10px;
+    overflow: hidden;
+}
+
+.mockup-item-title {
+    font-weight: 900;
+    color: rgba(255, 255, 255, 0.88);
+    font-size: 0.82rem;
+    margin-bottom: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.mockup-item-subtitle {
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.66);
+    font-size: 0.75rem;
+    line-height: 1.25;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
 }
 
 .mockup-chip {
@@ -1281,11 +2576,122 @@ img {
     margin: 14px 0;
 }
 
+.mockup-dashboard-metrics .mockup-kpi-row {
+    margin: 0;
+}
+
+.mockup-dashboard-ship-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+}
+
+.mockup-dashboard-marketing {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    padding: 0.65rem;
+    gap: 10px;
+}
+
+.mockup-dashboard-marketing .mockup-section-header {
+    grid-column: 1 / -1;
+}
+
 .mockup-kpi {
-    height: 44px;
+    min-height: 44px;
     border-radius: 12px;
     background: rgba(255, 255, 255, 0.06);
     border: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 9px 10px;
+    overflow: hidden;
+}
+
+.mockup-kpi-label {
+    font-size: 0.72rem;
+    font-weight: 800;
+    color: rgba(255, 255, 255, 0.72);
+    line-height: 1.1;
+}
+
+.mockup-kpi-value {
+    font-size: 0.95rem;
+    font-weight: 900;
+    color: rgba(255, 255, 255, 0.92);
+    letter-spacing: 0.01em;
+    line-height: 1.1;
+}
+
+.mockup-dashboard-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 0.15rem 0.1rem;
+}
+
+.mockup-dashboard-title {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.mockup-dashboard-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 999px;
+    background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0.04));
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.18);
+    flex: 0 0 auto;
+}
+
+.mockup-dashboard-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.85fr);
+    gap: 0.9rem;
+    align-items: start;
+}
+
+.mockup-dashboard-main,
+.mockup-dashboard-side {
+    min-width: 0;
+}
+
+.mockup-dashboard-grid .mockup-section {
+    gap: 0.65rem;
+}
+
+.mockup-dashboard-grid .mockup-media-card {
+    box-shadow: none;
+}
+
+.mockup-dashboard-main .mockup-item,
+.mockup-dashboard-side .mockup-item {
+    margin-top: 0;
+}
+
+.mockup-dashboard-main,
+.mockup-dashboard-side {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.mockup-media-card {
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.03);
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.18);
+}
+
+.mockup-media-card .mockup-screenshot {
+    margin-top: 0;
+    border: 0;
+    border-radius: 0;
 }
 
 .mockup-search {
@@ -1307,6 +2713,14 @@ img {
     border-radius: 14px;
     background: rgba(255, 255, 255, 0.06);
     border: 1px solid rgba(255, 255, 255, 0.08);
+    overflow: hidden;
+}
+
+.mockup-card-media {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
 }
 
 .mockup-image {
@@ -1338,7 +2752,36 @@ img {
         margin-top: 4rem;
     }
 
+    .mockup-split {
+        grid-template-columns: 1fr;
+    }
+
+    .mockup-split--reverse > :first-child,
+    .mockup-split--reverse > :last-child {
+        grid-column: auto;
+    }
+
+    .mockup-form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .mockup-form-grid--three {
+        grid-template-columns: 1fr;
+    }
+
+    .mockup-property-grid {
+        grid-template-columns: 1fr;
+    }
+
     .mockup-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .mockup-review-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .mockup-dashboard-grid {
         grid-template-columns: 1fr;
     }
 }

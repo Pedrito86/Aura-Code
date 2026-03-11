@@ -288,6 +288,51 @@ document.addEventListener('DOMContentLoaded', function() {
         animateParticles();
     }
 
+    // --- Trust Section Counter Animation ---
+    const trustSection = document.querySelector('.trust-section');
+    if (trustSection) {
+        const counters = document.querySelectorAll('.stat-number');
+        let activated = false;
+
+        const counterObserver = new IntersectionObserver((entries) => {
+            if (entries[0].isIntersecting && !activated) {
+                activated = true; // Set flag immediately to prevent double firing
+                
+                counters.forEach(counter => {
+                    const target = counter.getAttribute('data-target');
+                    if (!target) return;
+
+                    const targetNum = parseInt(target);
+                    const suffix = counter.getAttribute('data-suffix') || '';
+                    const duration = 2000;
+                    const frameDuration = 1000 / 60;
+                    const totalFrames = Math.round(duration / frameDuration);
+                    
+                    let frame = 0;
+                    
+                    const easeOutQuad = t => t * (2 - t);
+                    
+                    const updateCounter = () => {
+                        frame++;
+                        const progress = easeOutQuad(frame / totalFrames);
+                        const current = Math.round(targetNum * progress);
+                        
+                        if (frame < totalFrames) {
+                            counter.innerText = current + suffix;
+                            requestAnimationFrame(updateCounter);
+                        } else {
+                            counter.innerText = targetNum + suffix;
+                        }
+                    };
+                    
+                    requestAnimationFrame(updateCounter);
+                });
+            }
+        }, { threshold: 0.5 });
+
+        counterObserver.observe(trustSection);
+    }
+
     // --- Premium Project Card Glow Effect ---
     const projectCards = document.querySelectorAll('.project-card');
     
