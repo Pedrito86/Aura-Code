@@ -909,14 +909,68 @@ footer {
 }
 
 .footer-bottom {
-    text-align: center;
-    padding: 2rem 0;
+    padding: 0.9rem 0;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
-    background: #111111; /* Dark grey background for contrast */
+    background: #111111;
     color: #666666;
-    font-size: 0.85rem;
-    margin-top: 3rem; /* Ensure separation from content */
+    font-size: 0.82rem;
+    margin-top: 3rem;
     width: 100%;
+}
+
+.footer-bottom-inner {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 12px;
+}
+
+.footer-bottom-inner > p {
+    margin: 0;
+    justify-self: center;
+    text-align: center;
+}
+
+.footer-brand-badge {
+    justify-self: start;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    padding: 0;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    box-shadow: var(--shadow-sm);
+    text-decoration: none;
+    overflow: hidden;
+}
+
+.footer-brand-badge img {
+    height: 40px;
+    width: auto;
+    display: block;
+    opacity: 0.92;
+    transform: scale(1.18);
+    transform-origin: center;
+}
+
+@media (max-width: 640px) {
+    .footer-bottom-inner {
+        grid-template-columns: 1fr;
+        justify-items: center;
+        text-align: center;
+    }
+
+    .footer-brand-badge {
+        justify-self: center;
+        height: 44px;
+        border-radius: 16px;
+    }
+
+    .footer-brand-badge img {
+        height: 44px;
+    }
 }
 
 /* Animations */
