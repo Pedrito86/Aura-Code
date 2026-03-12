@@ -9,21 +9,27 @@
     <meta name="author" content="Sornex Studio">
     <meta name="robots" content="{% block meta_robots %}index, follow{% endblock %}">
     <link rel="canonical" href="{{ request.base_url }}">
+    <link rel="icon" href="{{ url_for('static', filename='img/favicon.svg') }}" type="image/svg+xml">
     <meta property="og:locale" content="it_IT">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Sornex Studio">
     <meta property="og:title" content="{{ self.title()|striptags|trim }}">
     <meta property="og:description" content="{{ self.meta_description()|striptags|trim }}">
     <meta property="og:url" content="{{ request.base_url }}">
-    <meta name="twitter:card" content="summary">
+    <meta property="og:image" content="{{ url_for('static', filename='img/og-image.svg', _external=True) }}">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Sornex Studio">
+    <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="{{ self.title()|striptags|trim }}">
     <meta name="twitter:description" content="{{ self.meta_description()|striptags|trim }}">
+    <meta name="twitter:image" content="{{ url_for('static', filename='img/og-image.svg', _external=True) }}">
     <script type="application/ld+json">{{ {"@context":"https://schema.org","@type":"Organization","name":"Sornex Studio","url":request.url_root.rstrip("/"),"email":"sornexstudio@gmail.com"} | tojson }}</script>
     <script type="application/ld+json">{{ {"@context":"https://schema.org","@type":"WebSite","name":"Sornex Studio","url":request.url_root.rstrip("/")} | tojson }}</script>
     <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=3">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=5">
     <style>
         /* Fallback critico se il CSS esterno fallisce */
         body { font-family: sans-serif; margin: 0; }
@@ -88,6 +94,7 @@
                     <li><a href="/web-ai">Web & AI</a></li>
                     <li><a href="/faq">FAQ</a></li>
                     <li><a href="/contatti">Contatti</a></li>
+                    <li><a href="/privacy">Privacy & Cookie</a></li>
                 </ul>
             </div>
             <div class="footer-section">
@@ -108,9 +115,31 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2024 Sornex Studio. Tutti i diritti riservati.</p>
+            <p>&copy; 2024 Sornex Studio. Tutti i diritti riservati. <a href="/privacy">Privacy & Cookie</a></p>
         </div>
     </footer>
+
+    <div id="cookie-banner" class="cookie-banner" role="dialog" aria-label="Preferenze cookie" aria-live="polite">
+        <div class="cookie-banner__inner">
+            <div class="cookie-banner__text">
+                <strong>Cookie</strong> Usiamo cookie tecnici per far funzionare il sito. Puoi accettare o rifiutare i cookie non essenziali. <a href="/privacy#cookie">Leggi l’informativa</a>.
+            </div>
+            <div class="cookie-banner__actions">
+                <button type="button" class="btn-secondary cookie-btn" id="cookie-reject">Rifiuta</button>
+                <button type="button" class="btn-primary cookie-btn" id="cookie-accept">Accetta</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="center-modal" class="center-modal" role="dialog" aria-modal="true" aria-hidden="true">
+        <div class="center-modal__backdrop" data-modal-close></div>
+        <div class="center-modal__panel" role="document">
+            <div id="center-modal-message" class="center-modal__message"></div>
+            <div class="center-modal__actions">
+                <button type="button" class="btn-primary" id="center-modal-ok" data-modal-close>Ok</button>
+            </div>
+        </div>
+    </div>
 
     <!-- Chat Widget -->
     <button id="chat-toggle-btn" class="chat-toggle-btn"><i class="fas fa-comment-dots"></i></button>
@@ -130,6 +159,6 @@
     </div>
 
     <!-- Custom JS -->
-    <script src="{{ url_for('static', filename='js/main.js') }}?v=2"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}?v=10"></script>
 </body>
 </html>

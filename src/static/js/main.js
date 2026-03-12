@@ -23,6 +23,196 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
+    const cookieBanner = document.getElementById('cookie-banner');
+    const cookieAcceptBtn = document.getElementById('cookie-accept');
+    const cookieRejectBtn = document.getElementById('cookie-reject');
+
+    const cookieConsentKey = 'cookie_consent';
+    let cookieConsentValue = null;
+
+    try {
+        cookieConsentValue = localStorage.getItem(cookieConsentKey);
+    } catch (e) {
+        cookieConsentValue = null;
+    }
+
+    const setCookieConsent = (value) => {
+        try {
+            localStorage.setItem(cookieConsentKey, value);
+        } catch (e) {}
+        document.documentElement.dataset.cookieConsent = value;
+        if (cookieBanner) cookieBanner.classList.remove('is-visible');
+    };
+
+    if (cookieBanner && !cookieConsentValue) {
+        cookieBanner.classList.add('is-visible');
+        if (cookieAcceptBtn) cookieAcceptBtn.addEventListener('click', () => setCookieConsent('accepted'));
+        if (cookieRejectBtn) cookieRejectBtn.addEventListener('click', () => setCookieConsent('rejected'));
+    } else if (cookieConsentValue) {
+        document.documentElement.dataset.cookieConsent = cookieConsentValue;
+    }
+
+    const centerModal = document.getElementById('center-modal');
+    const centerModalMessage = document.getElementById('center-modal-message');
+
+    const closeCenterModal = () => {
+        if (!centerModal) return;
+        centerModal.classList.remove('is-open');
+        centerModal.setAttribute('aria-hidden', 'true');
+    };
+
+    const openCenterModal = (message) => {
+        if (!centerModal || !centerModalMessage) return;
+        centerModalMessage.textContent = message;
+        centerModal.classList.add('is-open');
+        centerModal.setAttribute('aria-hidden', 'false');
+    };
+
+    if (centerModal) {
+        centerModal.querySelectorAll('[data-modal-close]').forEach((el) => {
+            el.addEventListener('click', closeCenterModal);
+        });
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeCenterModal();
+        });
+    }
+
+    const serverAlerts = document.querySelectorAll('.alert');
+    if (serverAlerts.length) {
+        const firstText = serverAlerts[0].textContent ? serverAlerts[0].textContent.trim() : '';
+        serverAlerts.forEach((el) => el.remove());
+        if (firstText) openCenterModal(firstText);
+    }
+
+    const contactForm = document.getElementById('contact-form');
+    if (contactForm) {
+        const statusEl = document.getElementById('contact-status');
+        const submitBtn = document.getElementById('contact-submit-btn') || contactForm.querySelector('button[type="submit"]');
+        const honeypot = contactForm.querySelector('input[name="fax_number"]');
+        if (honeypot) honeypot.value = '';
+        const formRenderedAt = Date.now();
+
+        const setStatus = (variant, text) => {
+            if (!statusEl) return;
+            statusEl.textContent = text;
+            statusEl.style.borderColor = variant === 'success' ? 'rgba(34, 197, 94, 0.45)' : 'rgba(248, 113, 113, 0.45)';
+            statusEl.style.background = variant === 'success' ? 'rgba(34, 197, 94, 0.12)' : 'rgba(248, 113, 113, 0.12)';
+        };
+
+        const publicKey = contactForm.dataset.emailjsPublicKey;
+        const serviceId = contactForm.dataset.emailjsServiceId;
+        const templateId = contactForm.dataset.emailjsTemplateId;
+
+        try {
+            if (window.emailjs && typeof window.emailjs.init === 'function' && publicKey) {
+                try {
+                    window.emailjs.init({ publicKey });
+                } catch (e) {
+                    window.emailjs.init(publicKey);
+                }
+            }
+        } catch (e) {}
+
+        const sendContactEmail = async () => {
+
+            if (honeypot) honeypot.value = '';
+
+            if (Date.now() - formRenderedAt < 1200) {
+                setStatus('error', 'Riprova tra un secondo e invia di nuovo.');
+                openCenterModal('Riprova tra un secondo e invia di nuovo.');
+                return;
+            }
+
+            const privacyConsent = contactForm.querySelector('input[name="privacy_consent"]');
+            if (privacyConsent && !privacyConsent.checked) {
+                setStatus('error', 'Per inviare il form devi accettare l’informativa privacy.');
+                openCenterModal('Per inviare il form devi accettare l’informativa privacy.');
+                return;
+            }
+
+            const lastSentKey = 'contact_last_sent_at';
+            try {
+                const lastSent = Number(localStorage.getItem(lastSentKey) || '0');
+                if (Number.isFinite(lastSent) && Date.now() - lastSent < 30000) {
+                    setStatus('error', 'Hai già inviato una richiesta da poco. Riprova tra qualche secondo.');
+                    openCenterModal('Hai già inviato una richiesta da poco. Riprova tra qualche secondo.');
+                    return;
+                }
+            } catch (e) {}
+
+            if (!window.emailjs || typeof window.emailjs.send !== 'function') {
+                setStatus('error', 'Servizio email non disponibile. Puoi scriverci direttamente a sornexstudio@gmail.com.');
+                openCenterModal('Servizio email non disponibile. Puoi scriverci direttamente a sornexstudio@gmail.com.');
+                return;
+            }
+
+            if (!serviceId || !templateId) {
+                setStatus('error', 'Configurazione EmailJS mancante.');
+                openCenterModal('Configurazione EmailJS mancante.');
+                return;
+            }
+
+            const name = (contactForm.querySelector('input[name="name"]')?.value || '').trim();
+            const email = (contactForm.querySelector('input[name="email"]')?.value || '').trim();
+            const phone = (contactForm.querySelector('input[name="phone"]')?.value || '').trim();
+            const message = (contactForm.querySelector('textarea[name="message"]')?.value || '').trim();
+
+            const topicSelect = contactForm.querySelector('select[name="topic"]');
+            const topic = topicSelect && topicSelect.selectedOptions && topicSelect.selectedOptions[0]
+                ? topicSelect.selectedOptions[0].textContent.trim()
+                : '';
+
+            if (!name || !email || !message || !topic) {
+                setStatus('error', 'Compila i campi richiesti prima di inviare.');
+                openCenterModal('Compila i campi richiesti prima di inviare.');
+                return;
+            }
+
+            if (submitBtn) {
+                submitBtn.disabled = true;
+                submitBtn.dataset.originalText = submitBtn.textContent;
+                submitBtn.textContent = 'Invio...';
+            }
+
+            try {
+                await window.emailjs.send(serviceId, templateId, {
+                    from_name: name,
+                    reply_to: email,
+                    phone: phone || '-',
+                    topic,
+                    message,
+                    page_url: window.location.href
+                });
+
+                try { localStorage.setItem(lastSentKey, String(Date.now())); } catch (e) {}
+
+                contactForm.reset();
+                setStatus('success', 'Richiesta inviata! Ti rispondiamo entro 24 ore lavorative.');
+                openCenterModal('Richiesta inviata! Ti rispondiamo entro 24 ore lavorative.');
+            } catch (err) {
+                setStatus('error', 'Invio non riuscito. Riprova o scrivi a sornexstudio@gmail.com.');
+                openCenterModal('Invio non riuscito. Riprova o scrivi a sornexstudio@gmail.com.');
+            } finally {
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    const original = submitBtn.dataset.originalText;
+                    if (original) submitBtn.textContent = original;
+                }
+            }
+        };
+
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            sendContactEmail();
+        });
+
+        if (submitBtn) {
+            submitBtn.addEventListener('click', () => {
+                sendContactEmail();
+            });
+        }
+    }
+
     // --- Scroll Reveal Animations ---
     const revealElements = document.querySelectorAll('.reveal');
     
@@ -708,28 +898,30 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
-        try {
-            const response = await fetch('/chat', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    message: text,
-                    session_id: sessionId
-                })
-            });
-            
-            const data = await response.json();
-            if (data.response) {
-                addMessage(data.response, 'agent');
-            } else if (data.error) {
-                addMessage("Errore: " + data.error, 'agent');
-            }
-        } catch (error) {
-            console.error('Error:', error);
-            addMessage("Si è verificato un errore di connessione.", 'agent');
+        const answer = getFaqAnswer(text);
+        if (answer) {
+            addMessage(answer, 'agent');
+            renderQuickReplies([
+                { label: 'Altre domande', onSelect: startFaqFlow },
+                { label: 'Torna al menu', onSelect: showMainMenu }
+            ]);
+            return;
         }
+
+        addMessage('Perfetto. Per darti una risposta precisa, mandami i dettagli dal form contatti (ci arriva via email).', 'agent');
+
+        const detailedUrl = `/contatti?msg=${encodeURIComponent(text)}`;
+        addAgentLinks('Vuoi fare il prossimo step?', [
+            { label: 'Apri Contatti', href: detailedUrl },
+            { label: 'Richiedi un preventivo (guidato)', href: '#', onSelect: startQuoteFlow }
+        ]);
+
+        renderQuickReplies([
+            { label: 'Richiedi preventivo', onSelect: startQuoteFlow, variant: 'chat-chip--primary' },
+            { label: 'Vedi esempi', onSelect: showExamplesFlow },
+            { label: 'FAQ', onSelect: startFaqFlow },
+            { label: 'Torna al menu', onSelect: showMainMenu }
+        ]);
     }
 
     sendBtn.addEventListener('click', sendMessage);

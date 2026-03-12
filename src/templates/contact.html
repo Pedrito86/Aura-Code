@@ -18,7 +18,8 @@
                     <p>Compila il form oppure usa uno dei canali diretti. Operiamo da remoto in tutta Italia.</p>
                 </div>
 
-                <form action="{{ url_for('contact') }}" method="POST" class="contact-form">
+                <form action="{{ url_for('contact') }}" method="POST" class="contact-form" id="contact-form" data-emailjs-public-key="_DkX8dLFJyuQjcn2h" data-emailjs-service-id="service_2dt9n2a" data-emailjs-template-id="template_pafxgel">
+                    <input type="text" id="fax_number" name="fax_number" autocomplete="off" autocapitalize="off" spellcheck="false" inputmode="none" tabindex="-1" aria-hidden="true" style="position: absolute; left: -9999px; height: 0; width: 0; opacity: 0; pointer-events: none;">
                     <div class="form-group">
                         <label for="name">Nome e Cognome</label>
                         <input type="text" id="name" name="name" placeholder="Il tuo nome" required>
@@ -52,7 +53,14 @@
                     </div>
 
                     <div class="form-footer">
-                        <button type="submit" class="btn-primary" style="width: 100%; font-size: 1.1rem;">
+                        <div id="contact-status" aria-live="polite" style="display:none; margin-bottom: 1rem; padding: 0.9rem 1rem; border-radius: 12px; background: rgba(15, 23, 42, 0.55); border: 1px solid rgba(255, 255, 255, 0.12); color: rgba(255, 255, 255, 0.85);"></div>
+                        <div style="text-align: left; margin-bottom: 1rem; font-size: 0.92rem; color: rgba(255, 255, 255, 0.75);">
+                            <label style="display: flex; gap: 10px; align-items: flex-start; cursor: pointer;">
+                                <input type="checkbox" name="privacy_consent" required style="margin-top: 4px;">
+                                <span>Ho letto e accetto l’<a href="/privacy" target="_blank" rel="noopener" style="color: var(--secondary-color); text-decoration: underline;">informativa privacy e cookie</a>.</span>
+                            </label>
+                        </div>
+                        <button type="submit" class="btn-primary" id="contact-submit-btn" style="width: 100%; font-size: 1.1rem;">
                             <i class="fas fa-paper-plane"></i> Invia richiesta
                         </button>
                         <div class="contact-note">Risposta rapida. Nessuno spam.</div>
@@ -163,4 +171,6 @@
         </div>
     </div>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 {% endblock %}

@@ -14,6 +14,8 @@ load_dotenv()
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
 app.url_map.strict_slashes = False
+app.config['TEMPLATES_AUTO_RELOAD'] = True
+app.jinja_env.auto_reload = True
 
 # Inizializza l'agente (lo faremo per sessione se necessario, ma per ora una istanza globale o per richiesta)
 # Meglio istanziare l'agente per richiesta o gestire lo stato nella sessione
@@ -152,6 +154,10 @@ def process():
 def faq():
     return render_template('faq.html')
 
+@app.route('/privacy')
+def privacy():
+    return render_template('privacy.html')
+
 @app.route('/settori')
 def sectors():
     return render_template('settori.html')
@@ -173,10 +179,16 @@ def contact():
         # Simulazione invio email
         name = request.form.get('name')
         email = request.form.get('email')
+        phone = request.form.get('phone')
         message = request.form.get('message')
+        privacy_consent = request.form.get('privacy_consent')
+
+        if privacy_consent != 'on':
+            flash('Per inviare il form devi accettare l’informativa privacy.', 'error')
+            return redirect(url_for('contact'))
         
         # Qui si potrebbe integrare l'invio reale di email o il salvataggio su DB
-        print(f"Nuovo contatto ricevuto: {name} ({email}): {message}")
+        print(f"Nuovo contatto ricevuto: {name} ({email}, {phone}): {message}")
         
         flash('Messaggio inviato con successo! Ti risponderemo al più presto.', 'success')
         return redirect(url_for('contact'))
@@ -219,6 +231,7 @@ def sitemap_xml():
         ("process", 0.7, "monthly"),
         ("about", 0.6, "monthly"),
         ("faq", 0.6, "monthly"),
+        ("privacy", 0.3, "yearly"),
         ("contact", 0.7, "monthly"),
     ]
 
