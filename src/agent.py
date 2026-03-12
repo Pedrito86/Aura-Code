@@ -12,7 +12,7 @@ class QuoteAgent:
         
         self.llm = ChatOpenAI(model="gpt-3.5-turbo", temperature=0.7)
         
-        self.system_prompt = """Sei un assistente tecnico di "Aura Code", una Digital Agency specializzata. 
+        self.system_prompt = """Sei un assistente tecnico di "Sornex Studio", una Digital Agency specializzata. 
 Il tuo obiettivo è raccogliere informazioni per preventivi di servizi digitali.
 
 Devi identificare quale servizio serve tra:
