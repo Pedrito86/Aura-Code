@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, jsonify, session, flash, redi
 import os
 import sys
 from datetime import date
+from werkzeug.middleware.proxy_fix import ProxyFix
 
 # Aggiungi la directory root al path
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -16,6 +17,35 @@ app.secret_key = os.urandom(24)
 app.url_map.strict_slashes = False
 app.config['TEMPLATES_AUTO_RELOAD'] = True
 app.jinja_env.auto_reload = True
+app.config['PREFERRED_URL_SCHEME'] = 'https'
+app.wsgi_app = ProxyFix(app.wsgi_app, x_for=1, x_proto=1, x_host=1, x_port=1, x_prefix=1)
+
+
+def public_base_url():
+    explicit = os.getenv('PUBLIC_SITE_URL') or os.getenv('SITE_URL')
+    if explicit:
+        return explicit.rstrip('/')
+
+    vercel_url = os.getenv('VERCEL_URL')
+    if vercel_url:
+        return f"https://{vercel_url}".rstrip('/')
+
+    return request.url_root.rstrip('/')
+
+
+@app.context_processor
+def inject_public_meta():
+    base = public_base_url()
+    path = request.path
+    if path != '/' and path.endswith('/'):
+        path = path[:-1]
+    canonical_url = base + (path if path != '/' else '/')
+    og_image_url = base + url_for('static', filename='img/og-image.svg')
+    return {
+        'public_base_url': base,
+        'canonical_url': canonical_url,
+        'og_image_url': og_image_url,
+    }
 
 # Inizializza l'agente (lo faremo per sessione se necessario, ma per ora una istanza globale o per richiesta)
 # Meglio istanziare l'agente per richiesta o gestire lo stato nella sessione
@@ -223,6 +253,7 @@ def reset():
 @app.route('/sitemap.xml')
 def sitemap_xml():
     today = date.today().isoformat()
+    base = public_base_url()
     urls = [
         ("home", 1.0, "weekly"),
         ("web_ai", 0.9, "monthly"),
@@ -239,7 +270,7 @@ def sitemap_xml():
     xml.append('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">')
     for endpoint, priority, changefreq in urls:
         xml.append("<url>")
-        xml.append(f"<loc>{url_for(endpoint, _external=True)}</loc>")
+        xml.append(f"<loc>{base}{url_for(endpoint)}</loc>")
         xml.append(f"<lastmod>{today}</lastmod>")
         xml.append(f"<changefreq>{changefreq}</changefreq>")
         xml.append(f"<priority>{priority:.1f}</priority>")
@@ -247,7 +278,7 @@ def sitemap_xml():
 
     for slug in SECTORS.keys():
         xml.append("<url>")
-        xml.append(f"<loc>{url_for('sector_detail', slug=slug, _external=True)}</loc>")
+        xml.append(f"<loc>{base}{url_for('sector_detail', slug=slug)}</loc>")
         xml.append(f"<lastmod>{today}</lastmod>")
         xml.append("<changefreq>monthly</changefreq>")
         xml.append("<priority>0.8</priority>")
@@ -258,7 +289,8 @@ def sitemap_xml():
 
 @app.route('/robots.txt')
 def robots_txt():
-    sitemap_url = url_for("sitemap_xml", _external=True)
+    base = public_base_url()
+    sitemap_url = f"{base}{url_for('sitemap_xml')}"
     content = "\n".join([
         "User-agent: *",
         "Allow: /",
