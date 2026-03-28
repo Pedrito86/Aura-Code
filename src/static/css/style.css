@@ -336,12 +336,32 @@ h1 i {
     transform: translateY(-2px);
 }
 
+.offer-cta-group,
+.offer-segment-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    margin-top: 1.25rem;
+}
+
+.offer-cta-group {
+    margin-top: 1.75rem;
+}
+
 /* Services Grid */
 .services-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
     margin-bottom: 4rem;
+}
+
+.services-grid.quad-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: 980px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .services-grid.sectors-grid {
@@ -352,8 +372,31 @@ h1 i {
 }
 
 @media (max-width: 720px) {
+    .services-grid.quad-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+
     .services-grid.sectors-grid {
         grid-template-columns: 1fr;
+    }
+}
+
+@media (min-width: 721px) and (max-width: 1024px) {
+    .pricing-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .faq-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .pricing-card.popular,
+    .pricing-card.popular:hover {
+        transform: none;
     }
 }
 
@@ -1271,10 +1314,6 @@ footer {
         letter-spacing: 1.5px;
     }
 
-    .services-grid {
-        grid-template-columns: 1fr;
-    }
-
     .service-card {
         padding: 2rem;
     }
@@ -1355,6 +1394,23 @@ footer {
 
     .service-card {
         padding: 1.75rem;
+    }
+
+    .offer-cta-group a,
+    .offer-segment-group a {
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
+
+    .pricing-grid {
+        grid-template-columns: 1fr;
+        padding: 0;
+    }
+
+    .faq-grid {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
     }
 }
 
@@ -3288,6 +3344,30 @@ img {
     z-index: 1100;
     padding: 14px 14px 18px;
     display: none;
+}
+
+.lang-banner {
+    bottom: auto;
+    top: 74px;
+    z-index: 1090;
+}
+
+.nav-lang-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 12px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    color: rgba(255, 255, 255, 0.9);
+    background: rgba(15, 23, 42, 0.35);
+    font-weight: 800;
+    letter-spacing: 0.02em;
+}
+
+.nav-lang-link:hover {
+    border-color: rgba(255, 255, 255, 0.32);
+    background: rgba(15, 23, 42, 0.55);
 }
 
 .cookie-banner.is-visible {

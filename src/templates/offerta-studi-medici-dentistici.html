@@ -1,0 +1,457 @@
+{% extends "base.html" %}
+
+{% block title %}Offerta Studi Medici e Dentistici | Sornex Studio{% endblock %}
+{% block meta_description %}Prenotazioni guidate, triage, reminder e recupero no-show per studi medici e dentistici. Riduci chiamate in segreteria e buchi in agenda con automazioni WhatsApp/SMS ed email.{% endblock %}
+{% block meta_keywords %}studio medico, studio dentistico, prenotazioni online, reminder whatsapp, sms, no-show, triage visite, automazioni, lead generation, recupero appuntamenti{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="hero">
+        <h1><i class="fas fa-notes-medical"></i> Prenotazioni e reminder per studi medici e dentistici</h1>
+        <p class="reveal">Riduciamo chiamate in segreteria, no-show e buchi in agenda con prenotazione guidata, reminder multi-touch e follow-up automatizzati.</p>
+        <div class="offer-cta-group reveal">
+            <a href="{{ url_for('contact', msg='Richiesta audit 15 min — Studio medico/dentistico. Città: . Obiettivo: .') }}" class="btn-primary">
+                <i class="fas fa-calendar-check"></i> Prenota audit 15 min
+            </a>
+            <a href="#come-funziona" class="btn-secondary">
+                <i class="fas fa-play-circle"></i> Vedi come funziona
+            </a>
+        </div>
+        <div class="offer-segment-group reveal">
+            <a href="#studio-medico" class="btn-secondary">
+                <i class="fas fa-user-doctor"></i> Studio Medico
+            </a>
+            <a href="#studio-dentistico" class="btn-secondary">
+                <i class="fas fa-tooth"></i> Studio Dentistico
+            </a>
+        </div>
+    </div>
+
+    <div class="section-title reveal" style="margin-top: 2rem;">
+        <h2>Il problema</h2>
+        <p>Le richieste arrivano, ma tra telefonate e buchi in agenda si perdono tempo e opportunità.</p>
+    </div>
+
+    <div class="services-grid quad-grid">
+        <div class="service-card reveal">
+            <div class="service-icon">
+                <i class="fas fa-phone-volume"></i>
+            </div>
+            <h3>Segreteria intasata</h3>
+            <p>Telefonate continue e richieste ripetitive: prenotare richiede troppo tempo e genera attese.</p>
+        </div>
+        <div class="service-card reveal">
+            <div class="service-icon">
+                <i class="fas fa-user-clock"></i>
+            </div>
+            <h3>Richieste senza risposta</h3>
+            <p>Quando la segreteria è occupata, le richieste si accumulano e i pazienti scelgono altri studi.</p>
+        </div>
+        <div class="service-card reveal">
+            <div class="service-icon">
+                <i class="fas fa-calendar-xmark"></i>
+            </div>
+            <h3>No-show e buchi</h3>
+            <p>Appuntamenti saltati all’ultimo minuto senza un sistema di conferma e recupero automatico.</p>
+        </div>
+        <div class="service-card reveal">
+            <div class="service-icon">
+                <i class="fas fa-triangle-exclamation"></i>
+            </div>
+            <h3>Richieste poco qualificate</h3>
+            <p>Senza un percorso guidato, mancano informazioni (tipo prestazione, prima visita/controllo, disponibilità) e i tempi si allungano.</p>
+        </div>
+    </div>
+
+    <div id="come-funziona" class="section-title reveal" style="margin-top: 4rem;">
+        <h2>La soluzione (workflow in 4 step)</h2>
+        <p>Un flusso semplice: richiesta → triage → conferma e reminder → follow-up/recupero.</p>
+    </div>
+
+    <div class="services-grid quad-grid">
+        <div class="service-card reveal">
+            <div class="service-icon">
+                <i class="fas fa-inbox"></i>
+            </div>
+            <h3>1) Richiesta</h3>
+            <p>Form o WhatsApp con domande rapide per raccogliere le info essenziali.</p>
+        </div>
+        <div class="service-card reveal">
+            <div class="service-icon">
+                <i class="fas fa-stethoscope"></i>
+            </div>
+            <h3>2) Triage</h3>
+            <p>Tipo prestazione, prima visita/controllo e disponibilità: tutto già ordinato.</p>
+        </div>
+        <div class="service-card reveal">
+            <div class="service-icon">
+                <i class="fas fa-bell"></i>
+            </div>
+            <h3>3) Conferma + reminder</h3>
+            <p>Promemoria automatici (72h/24h/2h) con conferma 1 click e istruzioni pre‑visita.</p>
+        </div>
+        <div class="service-card reveal">
+            <div class="service-icon">
+                <i class="fas fa-rotate"></i>
+            </div>
+            <h3>4) Follow‑up e recupero</h3>
+            <p>Messaggi post‑visita, richiami periodici e recupero automatico di appuntamenti mancati.</p>
+        </div>
+    </div>
+
+    <div class="section-title reveal" style="margin-top: 4rem;">
+        <h2>Cosa include</h2>
+        <p>Deliverable chiari, misurabili e pronti per andare online velocemente.</p>
+    </div>
+
+    <div class="services-grid quad-grid">
+        <div class="service-card reveal">
+            <div class="service-icon">
+                <i class="fas fa-calendar-check"></i>
+            </div>
+            <h3>Booking + form</h3>
+            <ul class="pricing-features" style="margin-top: 1rem;">
+                <li><i class="fas fa-check"></i> Prenotazione o pre‑richiesta</li>
+                <li><i class="fas fa-check"></i> Triage guidato</li>
+                <li><i class="fas fa-check"></i> Notifiche alla segreteria</li>
+            </ul>
+        </div>
+        <div class="service-card reveal">
+            <div class="service-icon">
+                <i class="fas fa-comments"></i>
+            </div>
+            <h3>Automazioni messaggi</h3>
+            <ul class="pricing-features" style="margin-top: 1rem;">
+                <li><i class="fas fa-check"></i> Template WhatsApp/SMS/email</li>
+                <li><i class="fas fa-check"></i> Reminder multi-touch</li>
+                <li><i class="fas fa-check"></i> Istruzioni pre‑visita</li>
+            </ul>
+        </div>
+        <div class="service-card reveal">
+            <div class="service-icon">
+                <i class="fas fa-tags"></i>
+            </div>
+            <h3>Tag e CRM base</h3>
+            <ul class="pricing-features" style="margin-top: 1rem;">
+                <li><i class="fas fa-check"></i> Etichette (prestazione, prima visita/controllo)</li>
+                <li><i class="fas fa-check"></i> Storico richieste</li>
+                <li><i class="fas fa-check"></i> Pipeline semplice per follow-up</li>
+            </ul>
+        </div>
+        <div class="service-card reveal">
+            <div class="service-icon">
+                <i class="fas fa-chart-line"></i>
+            </div>
+            <h3>Report mensile</h3>
+            <ul class="pricing-features" style="margin-top: 1rem;">
+                <li><i class="fas fa-check"></i> Tempo medio risposta</li>
+                <li><i class="fas fa-check"></i> No-show e recuperi</li>
+                <li><i class="fas fa-check"></i> Richieste gestite</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section-title reveal" style="margin-top: 4rem;">
+        <h2>Risultati attesi (KPI)</h2>
+        <p>Misuriamo l’impatto sull’operatività e sull’agenda, non solo “lead”.</p>
+    </div>
+
+    <div class="services-grid quad-grid">
+        <div class="service-card reveal">
+            <div class="service-icon">
+                <i class="fas fa-stopwatch"></i>
+            </div>
+            <h3>Tempo medio di risposta</h3>
+            <p>Riduci i tempi grazie a triage e automazioni: meno messaggi persi, più velocità.</p>
+        </div>
+        <div class="service-card reveal">
+            <div class="service-icon">
+                <i class="fas fa-phone-slash"></i>
+            </div>
+            <h3>Riduzione chiamate</h3>
+            <p>Più richieste gestite online e meno interruzioni per la segreteria.</p>
+        </div>
+        <div class="service-card reveal">
+            <div class="service-icon">
+                <i class="fas fa-user-check"></i>
+            </div>
+            <h3>Show-rate</h3>
+            <p>Reminder e conferme 1 click aumentano le presenze e riducono i no-show.</p>
+        </div>
+        <div class="service-card reveal">
+            <div class="service-icon">
+                <i class="fas fa-arrows-rotate"></i>
+            </div>
+            <h3>Recupero appuntamenti</h3>
+            <p>Automazioni per riproporre disponibilità e recuperare slot liberi.</p>
+        </div>
+    </div>
+
+    <div class="section-title reveal" style="margin-top: 4rem;">
+        <h2>Per chi è (e per chi no)</h2>
+        <p>Così capisci subito se questa soluzione è adatta al tuo studio e al tuo flusso.</p>
+    </div>
+
+    <div class="services-grid">
+        <div class="service-card reveal">
+            <div class="service-icon">
+                <i class="fas fa-thumbs-up"></i>
+            </div>
+            <h3>Perfetto se</h3>
+            <ul class="pricing-features" style="margin-top: 1rem; text-align: left;">
+                <li><i class="fas fa-check"></i> Vuoi ridurre telefonate e richieste ripetitive in segreteria</li>
+                <li><i class="fas fa-check"></i> Vuoi diminuire no-show con conferme e reminder multi-touch</li>
+                <li><i class="fas fa-check"></i> Vuoi un flusso guidato per raccogliere le info giuste già alla prima richiesta</li>
+                <li><i class="fas fa-check"></i> Vuoi misurare KPI (tempo risposta, show-rate, recuperi)</li>
+            </ul>
+        </div>
+        <div class="service-card reveal">
+            <div class="service-icon">
+                <i class="fas fa-thumbs-down"></i>
+            </div>
+            <h3>Non è ideale se</h3>
+            <ul class="pricing-features" style="margin-top: 1rem; text-align: left;">
+                <li><i class="fas fa-check"></i> Cerchi solo una landing senza gestione appuntamenti e follow-up</li>
+                <li><i class="fas fa-check"></i> Non puoi raccogliere consensi e contatti in modo tracciabile</li>
+                <li><i class="fas fa-check"></i> La segreteria non può gestire nemmeno le richieste già qualificate</li>
+                <li><i class="fas fa-check"></i> Vuoi un gestionale completo: qui ottimizziamo prenotazioni e automazioni</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section-title reveal" style="margin-top: 4rem;">
+        <h2>Canali supportati</h2>
+        <p>In base alle preferenze del tuo studio, attiviamo i canali più efficaci per richieste, conferme e reminder.</p>
+    </div>
+
+    <div class="services-grid quad-grid">
+        <div class="service-card reveal">
+            <div class="service-icon">
+                <i class="fab fa-whatsapp"></i>
+            </div>
+            <h3>WhatsApp</h3>
+            <p>Richieste e reminder con template e consenso, per velocizzare le conferme.</p>
+        </div>
+        <div class="service-card reveal">
+            <div class="service-icon">
+                <i class="fas fa-sms"></i>
+            </div>
+            <h3>SMS</h3>
+            <p>Promemoria affidabili e rapidi, perfetti per ridurre no-show all’ultimo minuto.</p>
+        </div>
+        <div class="service-card reveal">
+            <div class="service-icon">
+                <i class="fas fa-envelope"></i>
+            </div>
+            <h3>Email</h3>
+            <p>Istruzioni pre-visita, documenti e follow-up post-visita in modo ordinato.</p>
+        </div>
+        <div class="service-card reveal">
+            <div class="service-icon">
+                <i class="fas fa-calendar-days"></i>
+            </div>
+            <h3>Calendario / Gestionale</h3>
+            <p>Se già presente, possiamo collegare strumenti e flussi per ridurre il lavoro manuale.</p>
+        </div>
+    </div>
+
+    <div class="section-title reveal" style="margin-top: 4rem;">
+        <h2>Cosa succede dopo l’audit (15 min)</h2>
+        <p>Un percorso semplice: prima mettiamo online il minimo efficace, poi ottimizziamo con i dati.</p>
+    </div>
+
+    <div class="services-grid">
+        <div class="service-card reveal">
+            <div class="service-icon">
+                <i class="fas fa-route"></i>
+            </div>
+            <h3>1) Mappiamo il flusso</h3>
+            <p>Capisco come arrivano le richieste oggi e dove si perdono: chiamate, no-show, tempi di risposta.</p>
+        </div>
+        <div class="service-card reveal">
+            <div class="service-icon">
+                <i class="fas fa-screwdriver-wrench"></i>
+            </div>
+            <h3>2) Setup “minimo efficace”</h3>
+            <p>Definiamo triage, messaggi e reminder. Ti consegno una proposta chiara con pacchetto consigliato.</p>
+        </div>
+        <div class="service-card reveal">
+            <div class="service-icon">
+                <i class="fas fa-chart-simple"></i>
+            </div>
+            <h3>3) Go-live + misurazione</h3>
+            <p>Mettiamo online e monitoriamo KPI: show-rate, recuperi, richieste gestite senza telefonate.</p>
+        </div>
+    </div>
+
+    <div class="cta-section reveal" style="margin-top: 4rem;">
+        <div class="cta-content">
+            <h2>Pilota per 3 studi (posti limitati)</h2>
+            <p>Se non hai case study da mostrare, partiamo da un obiettivo misurabile: riduzione chiamate e no-show in 30 giorni.</p>
+            <br>
+            <a href="{{ url_for('contact', msg='Richiesta Pilota 30 giorni — Studio medico/dentistico. Città: . Obiettivo: ridurre chiamate/no-show. Canali: WhatsApp/SMS/email.') }}" class="btn-primary">
+                <i class="fas fa-flag-checkered"></i> Candidati al pilota
+            </a>
+        </div>
+    </div>
+
+    <div class="section-title reveal" id="studio-medico" style="margin-top: 4rem;">
+        <h2>Offerta Studio Medico</h2>
+        <p>“Riduciamo chiamate in segreteria e velocizziamo l’accesso alle visite, con prenotazione guidata + reminder.”</p>
+        <p>Per medicina generale, poliambulatori e specialisti: triage iniziale (prestazione, prima visita/controllo), prenotazione o pre‑richiesta e istruzioni pre‑visita (documenti, digiuno, esami) per ridurre tempi di risposta e lavoro in segreteria.</p>
+    </div>
+
+    <div class="pricing-section" style="padding-top: 0;">
+        <div class="pricing-grid">
+            <div class="pricing-card reveal">
+                <div class="pricing-header">
+                    <h3>Start</h3>
+                    <div class="price">€800 – €1200</div>
+                    <div class="price-desc">Form + risposta automatica + reminder base</div>
+                </div>
+                <ul class="pricing-features">
+                    <li><i class="fas fa-check"></i> Richiesta visita guidata</li>
+                    <li><i class="fas fa-check"></i> Risposta automatica con istruzioni</li>
+                    <li><i class="fas fa-check"></i> Reminder base</li>
+                </ul>
+                <div class="pricing-footer">
+                    <a class="btn-pricing" href="{{ url_for('contact', msg='Audit 15 min — Studio Medico (Start). Tipo studio: medicina generale/specialisti. Città: .') }}">Prenota audit</a>
+                </div>
+            </div>
+
+            <div class="pricing-card popular reveal">
+                <div class="popular-badge">Consigliato</div>
+                <div class="pricing-header">
+                    <h3>Pro</h3>
+                    <div class="price">€1500 – €3000</div>
+                    <div class="price-desc">Booking + triage + tag pazienti + report</div>
+                </div>
+                <ul class="pricing-features">
+                    <li><i class="fas fa-check"></i> Prenotazione o pre‑richiesta</li>
+                    <li><i class="fas fa-check"></i> Triage (prestazione, prima visita/controllo)</li>
+                    <li><i class="fas fa-check"></i> Tag pazienti + storico</li>
+                    <li><i class="fas fa-check"></i> Report mensile KPI</li>
+                </ul>
+                <div class="pricing-footer">
+                    <a class="btn-pricing btn-popular" href="{{ url_for('contact', msg='Audit 15 min — Studio Medico (Pro). Obiettivo: ridurre chiamate + velocizzare prenotazioni.') }}">Prenota audit</a>
+                </div>
+            </div>
+
+            <div class="pricing-card reveal">
+                <div class="pricing-header">
+                    <h3>Plus</h3>
+                    <div class="price">Preventivo su Misura</div>
+                    <div class="price-desc">Integrazione gestionale/CRM + recupero appuntamenti mancati</div>
+                </div>
+                <ul class="pricing-features">
+                    <li><i class="fas fa-check"></i> Integrazione gestionale/CRM</li>
+                    <li><i class="fas fa-check"></i> Recupero appuntamenti mancati</li>
+                    <li><i class="fas fa-check"></i> Follow‑up e richiami</li>
+                </ul>
+                <div class="pricing-footer">
+                    <a class="btn-pricing" href="{{ url_for('contact', msg='Audit 15 min — Studio Medico (Plus). Integrazioni richieste: .') }}">Prenota audit</a>
+                </div>
+            </div>
+        </div>
+        <div class="pricing-disclaimer reveal"><i class="fas fa-circle-info"></i> Fasce indicative: il canone dipende da canali, volumi e integrazioni. Definiamo tutto in audit.</div>
+    </div>
+
+    <div class="section-title reveal" id="studio-dentistico" style="margin-top: 4rem;">
+        <h2>Offerta Studio Dentistico</h2>
+        <p>“Riduciamo i buchi in agenda e aumentiamo i pazienti che si presentano.”</p>
+        <p>Per studi dentistici orientati a crescita e qualità agenda: lead capture per trattamenti (igiene, sbiancamento, ortodonzia), pre‑qualifica rapida e reminder multi-touch con conferma 1 click. In caso di no‑show, recupero automatico con nuove disponibilità e riattivazione richiami igiene ogni 6 mesi.</p>
+    </div>
+
+    <div class="pricing-section" style="padding-top: 0;">
+        <div class="pricing-grid">
+            <div class="pricing-card reveal">
+                <div class="pricing-header">
+                    <h3>Start</h3>
+                    <div class="price">€700 – €1100</div>
+                    <div class="price-desc">Landing + form + reminder</div>
+                </div>
+                <ul class="pricing-features">
+                    <li><i class="fas fa-check"></i> Lead capture (igiene/sbiancamento/ortodonzia)</li>
+                    <li><i class="fas fa-check"></i> Pre‑qualifica (disponibilità oraria)</li>
+                    <li><i class="fas fa-check"></i> Reminder + conferma 1 click</li>
+                </ul>
+                <div class="pricing-footer">
+                    <a class="btn-pricing" href="{{ url_for('contact', msg='Audit 15 min — Studio Dentistico (Start). Prestazione principale: .') }}">Prenota audit</a>
+                </div>
+            </div>
+
+            <div class="pricing-card popular reveal">
+                <div class="popular-badge">Consigliato</div>
+                <div class="pricing-header">
+                    <h3>Pro</h3>
+                    <div class="price">€1400 – €2900</div>
+                    <div class="price-desc">Recupero no‑show + richiami igiene</div>
+                </div>
+                <ul class="pricing-features">
+                    <li><i class="fas fa-check"></i> Reminder multi-touch (72h/24h/2h)</li>
+                    <li><i class="fas fa-check"></i> Recupero no‑show automatico</li>
+                    <li><i class="fas fa-check"></i> Richiami igiene ogni 6 mesi</li>
+                    <li><i class="fas fa-check"></i> Report conversioni</li>
+                </ul>
+                <div class="pricing-footer">
+                    <a class="btn-pricing btn-popular" href="{{ url_for('contact', msg='Audit 15 min — Studio Dentistico (Pro). Obiettivo: ridurre no-show e buchi agenda.') }}">Prenota audit</a>
+                </div>
+            </div>
+
+            <div class="pricing-card reveal">
+                <div class="pricing-header">
+                    <h3>Plus</h3>
+                    <div class="price">Preventivo su Misura</div>
+                    <div class="price-desc">Campagne lead + pipeline + dashboard conversioni</div>
+                </div>
+                <ul class="pricing-features">
+                    <li><i class="fas fa-check"></i> Campagne lead (Meta/Google)</li>
+                    <li><i class="fas fa-check"></i> Pipeline e tag avanzati</li>
+                    <li><i class="fas fa-check"></i> Dashboard conversioni</li>
+                </ul>
+                <div class="pricing-footer">
+                    <a class="btn-pricing" href="{{ url_for('contact', msg='Audit 15 min — Studio Dentistico (Plus). Canali advertising: . Budget: .') }}">Prenota audit</a>
+                </div>
+            </div>
+        </div>
+        <div class="pricing-disclaimer reveal"><i class="fas fa-circle-info"></i> WhatsApp/SMS: attivazione e compliance dipendono dal provider e dalle policy dello studio.</div>
+    </div>
+
+    <div class="section-title reveal" style="margin-top: 4rem;">
+        <h2>FAQ</h2>
+        <p>Risposte rapide alle obiezioni più comuni.</p>
+    </div>
+
+    <div class="faq-section">
+        <div class="faq-grid">
+            <div class="faq-item reveal">
+                <h3>Serve un gestionale?</h3>
+                <p>No. Possiamo partire senza integrazioni e aggiungerle nel pacchetto Plus quando serve.</p>
+            </div>
+            <div class="faq-item reveal">
+                <h3>WhatsApp è a norma?</h3>
+                <p>Usiamo template e consensi in modo tracciabile. La conformità dipende anche dai processi interni e dalla privacy policy dello studio.</p>
+            </div>
+            <div class="faq-item reveal">
+                <h3>Quanto tempo richiede alla segreteria?</h3>
+                <p>L’obiettivo è ridurre lavoro manuale: triage e reminder automatizzano le attività ripetitive e filtrano le richieste.</p>
+            </div>
+            <div class="faq-item reveal">
+                <h3>In quanto va online?</h3>
+                <p>Dipende da contenuti e integrazioni. In audit definiamo priorità e timeline, partendo dal minimo efficace.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="cta-section reveal" style="margin-top: 4rem;">
+        <div class="cta-content">
+            <h2>Prenota l’audit di 15 minuti</h2>
+            <p>Capisco il tuo flusso attuale e ti dico cosa automatizzare subito per ridurre chiamate e no‑show.</p>
+            <br>
+            <a href="{{ url_for('contact', msg='Richiesta audit 15 min — Tipo studio: medico/dentistico. Città: . Canali preferiti: WhatsApp/SMS/email. Obiettivo: .') }}" class="btn-primary">
+                <i class="fas fa-calendar-check"></i> Prenota audit 15 min
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

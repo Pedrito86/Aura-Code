@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="{{ 'en' if is_en else 'it' }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,8 +9,11 @@
     <meta name="author" content="Sornex Studio">
     <meta name="robots" content="{% block meta_robots %}index, follow{% endblock %}">
     <link rel="canonical" href="{{ canonical_url }}">
+    <link rel="alternate" hreflang="it" href="{{ alternate_it_url }}">
+    <link rel="alternate" hreflang="en" href="{{ alternate_en_url }}">
+    <link rel="alternate" hreflang="x-default" href="{{ alternate_en_url }}">
     <link rel="icon" href="{{ url_for('static', filename='img/favicon.svg') }}" type="image/svg+xml">
-    <meta property="og:locale" content="it_IT">
+    <meta property="og:locale" content="{{ 'en_US' if is_en else 'it_IT' }}">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Sornex Studio">
     <meta property="og:title" content="{{ self.title()|striptags|trim }}">
@@ -24,8 +27,8 @@
     <meta name="twitter:title" content="{{ self.title()|striptags|trim }}">
     <meta name="twitter:description" content="{{ self.meta_description()|striptags|trim }}">
     <meta name="twitter:image" content="{{ og_image_url }}">
-    <script type="application/ld+json">{{ {"@context":"https://schema.org","@type":"Organization","name":"Sornex Studio","url":request.url_root.rstrip("/"),"email":"sornexstudio@gmail.com"} | tojson }}</script>
-    <script type="application/ld+json">{{ {"@context":"https://schema.org","@type":"WebSite","name":"Sornex Studio","url":request.url_root.rstrip("/")} | tojson }}</script>
+    <script type="application/ld+json">{{ {"@context":"https://schema.org","@type":"Organization","name":"Sornex Studio","url":public_base_url,"email":"sornexstudio@gmail.com"} | tojson }}</script>
+    <script type="application/ld+json">{{ {"@context":"https://schema.org","@type":"WebSite","name":"Sornex Studio","url":public_base_url} | tojson }}</script>
     <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Custom CSS -->
@@ -42,7 +45,7 @@
     <!-- Navbar -->
     <nav class="navbar">
         <div class="container nav-content">
-            <a href="/" class="logo">
+            <a href="{{ '/en' if is_en else '/' }}" class="logo">
                 <i class="fas fa-layer-group"></i> Sornex Studio
             </a>
             <div class="menu-toggle" id="mobile-menu">
@@ -51,13 +54,22 @@
                 <span class="bar"></span>
             </div>
             <ul class="nav-links">
-                <li><a href="/">Home</a></li>
-                <li><a href="/chi-siamo">Chi Siamo</a></li>
-                <li><a href="/processo">Processo</a></li>
-                <li><a href="/settori">Settori</a></li>
-                <li><a href="/web-ai">Web & AI</a></li>
-                <li><a href="/faq">FAQ</a></li>
-                <li><a href="/contatti">Contatti</a></li>
+                <li><a href="{{ '/en' if is_en else '/' }}">Home</a></li>
+                <li><a href="{{ '/en/chi-siamo' if is_en else '/chi-siamo' }}">{{ 'About' if is_en else 'Chi Siamo' }}</a></li>
+                <li><a href="{{ '/en/processo' if is_en else '/processo' }}">{{ 'Process' if is_en else 'Processo' }}</a></li>
+                <li><a href="{{ '/en/settori' if is_en else '/settori' }}">{{ 'Sectors' if is_en else 'Settori' }}</a></li>
+                <li><a href="{{ '/en/offerta-studi-medici-dentistici' if is_en else '/offerta-studi-medici-dentistici' }}">{{ 'Offer' if is_en else 'Offerta' }}</a></li>
+                <li><a href="{{ '/en/web-ai' if is_en else '/web-ai' }}">Web & AI</a></li>
+                <li><a href="{{ '/en/faq' if is_en else '/faq' }}">FAQ</a></li>
+                <li><a href="{{ '/en/contatti' if is_en else '/contatti' }}">{{ 'Contact' if is_en else 'Contatti' }}</a></li>
+                <li class="nav-lang">
+                    <a href="{{ alternate_it_path if is_en else alternate_en_path }}" class="nav-lang-link" data-lang-toggle>{{ 'IT' if is_en else 'EN' }}</a>
+                </li>
+                {% if is_en %}
+                <li class="nav-currency">
+                    <a href="#" class="nav-lang-link" id="currency-toggle" data-currency-toggle aria-label="Currency">EUR</a>
+                </li>
+                {% endif %}
             </ul>
         </div>
     </nav>
@@ -82,25 +94,25 @@
         <div class="container footer-content">
             <div class="footer-section">
                 <h4><i class="fas fa-layer-group"></i> Sornex Studio</h4>
-                <p>Digital Agency specializzata in Web Design e Soluzioni AI. Creiamo esperienze digitali eleganti e funzionali per il tuo business.</p>
+                <p>{{ 'Digital agency specialized in web design and AI solutions. We build elegant, high-performing digital experiences.' if is_en else 'Digital Agency specializzata in Web Design e Soluzioni AI. Creiamo esperienze digitali eleganti e funzionali per il tuo business.' }}</p>
             </div>
             <div class="footer-section">
-                <h4>Link Rapidi</h4>
+                <h4>{{ 'Quick Links' if is_en else 'Link Rapidi' }}</h4>
                 <ul>
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/chi-siamo">Chi Siamo</a></li>
-                    <li><a href="/processo">Processo</a></li>
-                    <li><a href="/settori">Settori</a></li>
-                    <li><a href="/web-ai">Web & AI</a></li>
-                    <li><a href="/faq">FAQ</a></li>
-                    <li><a href="/contatti">Contatti</a></li>
-                    <li><a href="/privacy">Privacy & Cookie</a></li>
+                    <li><a href="{{ '/en' if is_en else '/' }}">Home</a></li>
+                    <li><a href="{{ '/en/chi-siamo' if is_en else '/chi-siamo' }}">{{ 'About' if is_en else 'Chi Siamo' }}</a></li>
+                    <li><a href="{{ '/en/processo' if is_en else '/processo' }}">{{ 'Process' if is_en else 'Processo' }}</a></li>
+                    <li><a href="{{ '/en/settori' if is_en else '/settori' }}">{{ 'Sectors' if is_en else 'Settori' }}</a></li>
+                    <li><a href="{{ '/en/web-ai' if is_en else '/web-ai' }}">Web & AI</a></li>
+                    <li><a href="{{ '/en/faq' if is_en else '/faq' }}">FAQ</a></li>
+                    <li><a href="{{ '/en/contatti' if is_en else '/contatti' }}">{{ 'Contact' if is_en else 'Contatti' }}</a></li>
+                    <li><a href="{{ '/en/privacy' if is_en else '/privacy' }}">{{ 'Privacy & Cookies' if is_en else 'Privacy & Cookie' }}</a></li>
                 </ul>
             </div>
             <div class="footer-section">
-                <h4>Contattaci</h4>
+                <h4>{{ 'Contact' if is_en else 'Contattaci' }}</h4>
                 <p><i class="fas fa-envelope"></i> sornexstudio@gmail.com</p>
-                <p><i class="fas fa-phone"></i> Telefono: disponibile su richiesta</p>
+                <p><i class="fas fa-phone"></i> {{ 'Phone: available on request' if is_en else 'Telefono: disponibile su richiesta' }}</p>
                 <div class="social-icons">
                     <a href="#"><i class="fab fa-facebook"></i></a>
                     <a href="https://www.linkedin.com/in/sornexstudio-3088283b7/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Sornex Studio"><i class="fab fa-linkedin"></i></a>
@@ -116,22 +128,42 @@
         </div>
         <div class="footer-bottom">
             <div class="container footer-bottom-inner">
-                <a class="footer-brand-badge" href="/" aria-label="Sornex Studio">
+                <a class="footer-brand-badge" href="{{ '/en' if is_en else '/' }}" aria-label="Sornex Studio">
                     <img src="{{ url_for('static', filename='img/og-image.svg') }}" alt="Sornex Studio" loading="lazy">
                 </a>
-                <p>&copy; 2024 Sornex Studio. Tutti i diritti riservati. <a href="/privacy">Privacy & Cookie</a></p>
+                <p>&copy; 2026 Sornex Studio. {{ 'All rights reserved.' if is_en else 'Tutti i diritti riservati.' }} <a href="{{ '/en/privacy' if is_en else '/privacy' }}">{{ 'Privacy & Cookies' if is_en else 'Privacy & Cookie' }}</a></p>
             </div>
         </div>
     </footer>
 
+    <div id="lang-banner" class="cookie-banner lang-banner" role="dialog" aria-label="Language preferences" aria-live="polite" data-alt-it="{{ alternate_it_path }}" data-alt-en="{{ alternate_en_path }}">
+        <div class="cookie-banner__inner">
+            <div class="cookie-banner__text">
+                {% if is_en %}
+                    <strong>Language</strong> Prefer Italian? Switch to the Italian version of this page.
+                {% else %}
+                    <strong>Lingua</strong> Preferisci l’inglese? Puoi vedere questa pagina in English.
+                {% endif %}
+            </div>
+            <div class="cookie-banner__actions">
+                <button type="button" class="btn-secondary cookie-btn" id="lang-stay">{{ 'Stay here' if is_en else 'Resta qui' }}</button>
+                <button type="button" class="btn-primary cookie-btn" id="lang-switch">{{ 'Switch language' if is_en else 'Cambia lingua' }}</button>
+            </div>
+        </div>
+    </div>
+
     <div id="cookie-banner" class="cookie-banner" role="dialog" aria-label="Preferenze cookie" aria-live="polite">
         <div class="cookie-banner__inner">
             <div class="cookie-banner__text">
-                <strong>Cookie</strong> Usiamo cookie tecnici per far funzionare il sito. Puoi accettare o rifiutare i cookie non essenziali. <a href="/privacy#cookie">Leggi l’informativa</a>.
+                {% if is_en %}
+                    <strong>Cookies</strong> We use essential cookies to make the site work. You can accept or reject non-essential cookies. <a href="/en/privacy#cookie">Read the policy</a>.
+                {% else %}
+                    <strong>Cookie</strong> Usiamo cookie tecnici per far funzionare il sito. Puoi accettare o rifiutare i cookie non essenziali. <a href="/privacy#cookie">Leggi l’informativa</a>.
+                {% endif %}
             </div>
             <div class="cookie-banner__actions">
-                <button type="button" class="btn-secondary cookie-btn" id="cookie-reject">Rifiuta</button>
-                <button type="button" class="btn-primary cookie-btn" id="cookie-accept">Accetta</button>
+                <button type="button" class="btn-secondary cookie-btn" id="cookie-reject">{{ 'Reject' if is_en else 'Rifiuta' }}</button>
+                <button type="button" class="btn-primary cookie-btn" id="cookie-accept">{{ 'Accept' if is_en else 'Accetta' }}</button>
             </div>
         </div>
     </div>
@@ -151,14 +183,14 @@
     
     <div id="chat-widget" class="chat-widget">
         <div class="chat-header">
-            <span><i class="fas fa-headset"></i> Assistente Preventivi</span>
+            <span><i class="fas fa-headset"></i> {{ 'Quote Assistant' if is_en else 'Assistente Preventivi' }}</span>
             <button id="close-chat" style="background:none;border:none;color:white;cursor:pointer;font-size:1.2rem;"><i class="fas fa-times"></i></button>
         </div>
         <div id="chat-body" class="chat-body">
             <!-- Messages will appear here -->
         </div>
         <div class="chat-input-area">
-            <input type="text" id="chat-input" class="chat-input" placeholder="Scrivi un messaggio...">
+            <input type="text" id="chat-input" class="chat-input" placeholder="{{ 'Type a message...' if is_en else 'Scrivi un messaggio...' }}">
             <button id="send-btn" class="btn-primary" style="padding: 8px 15px; border-radius: 20px;"><i class="fas fa-paper-plane"></i></button>
         </div>
     </div>

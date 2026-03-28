@@ -23,6 +23,143 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
+    const currencyKey = 'preferred_currency';
+    const currencyToggle = document.querySelector('[data-currency-toggle]');
+    const currencyEls = document.querySelectorAll('[data-eur-min]');
+    const browserLangRaw = (navigator.language || '').toLowerCase();
+
+    const guessCurrency = () => {
+        if (document.documentElement.lang !== 'en') return 'EUR';
+        if (browserLangRaw.startsWith('en-gb')) return 'GBP';
+        if (browserLangRaw.startsWith('en-us')) return 'USD';
+        return 'USD';
+    };
+
+    let preferredCurrency = null;
+    try {
+        preferredCurrency = localStorage.getItem(currencyKey);
+    } catch (e) {
+        preferredCurrency = null;
+    }
+
+    const currency = (preferredCurrency === 'EUR' || preferredCurrency === 'USD' || preferredCurrency === 'GBP')
+        ? preferredCurrency
+        : guessCurrency();
+
+    const rates = { EUR: 1, USD: 1.1, GBP: 0.86 };
+    const locales = { EUR: 'en-IE', USD: 'en-US', GBP: 'en-GB' };
+
+    const roundMoney = (value) => {
+        const step = value < 1000 ? 10 : 50;
+        return Math.round(value / step) * step;
+    };
+
+    const formatMoney = (value, targetCurrency) => {
+        const locale = locales[targetCurrency] || 'en';
+        try {
+            return new Intl.NumberFormat(locale, { style: 'currency', currency: targetCurrency, maximumFractionDigits: 0 }).format(value);
+        } catch (e) {
+            const symbol = targetCurrency === 'USD' ? '$' : targetCurrency === 'GBP' ? '£' : '€';
+            return `${symbol}${Math.round(value)}`;
+        }
+    };
+
+    const updatePriceEl = (el, targetCurrency) => {
+        const minEur = Number(el.getAttribute('data-eur-min') || '');
+        const maxEur = Number(el.getAttribute('data-eur-max') || '');
+        if (!Number.isFinite(minEur)) return;
+
+        const prefix = el.getAttribute('data-price-prefix') || '';
+        const rate = rates[targetCurrency] || 1;
+        const min = roundMoney(minEur * rate);
+        const max = Number.isFinite(maxEur) ? roundMoney(maxEur * rate) : null;
+        const minText = formatMoney(min, targetCurrency);
+        const text = max ? `${minText} – ${formatMoney(max, targetCurrency)}` : `${prefix ? `${prefix} ` : ''}${minText}`;
+        el.textContent = text;
+    };
+
+    if (currencyEls.length) {
+        currencyEls.forEach((el) => updatePriceEl(el, currency));
+    }
+
+    if (currencyToggle) {
+        currencyToggle.textContent = currency;
+        currencyToggle.addEventListener('click', (e) => {
+            e.preventDefault();
+            const sequence = ['EUR', 'USD', 'GBP'];
+            const current = currencyToggle.textContent === 'USD' || currencyToggle.textContent === 'GBP' || currencyToggle.textContent === 'EUR'
+                ? currencyToggle.textContent
+                : 'EUR';
+            const next = sequence[(sequence.indexOf(current) + 1) % sequence.length];
+            currencyToggle.textContent = next;
+            try { localStorage.setItem(currencyKey, next); } catch (err) {}
+            currencyEls.forEach((el) => updatePriceEl(el, next));
+        });
+    }
+
+    const langBanner = document.getElementById('lang-banner');
+    const langStayBtn = document.getElementById('lang-stay');
+    const langSwitchBtn = document.getElementById('lang-switch');
+    const preferredLangKey = 'preferred_lang';
+    const currentLang = document.documentElement.lang === 'en' ? 'en' : 'it';
+    const alternateItUrl = langBanner?.dataset?.altIt || '';
+    const alternateEnUrl = langBanner?.dataset?.altEn || '';
+
+    let preferredLang = null;
+    try {
+        preferredLang = localStorage.getItem(preferredLangKey);
+    } catch (e) {
+        preferredLang = null;
+    }
+
+    const setPreferredLang = (value) => {
+        try {
+            localStorage.setItem(preferredLangKey, value);
+        } catch (e) {}
+    };
+
+    const langToggleLink = document.querySelector('[data-lang-toggle]');
+    if (langToggleLink) {
+        langToggleLink.addEventListener('click', () => {
+            const target = currentLang === 'en' ? 'it' : 'en';
+            setPreferredLang(target);
+        });
+    }
+
+    if (preferredLang === 'en' && currentLang !== 'en' && alternateEnUrl) {
+        window.location.replace(alternateEnUrl);
+        return;
+    }
+
+    if (preferredLang === 'it' && currentLang !== 'it' && alternateItUrl) {
+        window.location.replace(alternateItUrl);
+        return;
+    }
+
+    const browserLang = browserLangRaw;
+    const shouldSuggestEnglish = currentLang === 'it' && browserLang && !browserLang.startsWith('it');
+    const shouldSuggestItalian = currentLang === 'en' && browserLang && browserLang.startsWith('it');
+
+    if (langBanner && !preferredLang && (shouldSuggestEnglish || shouldSuggestItalian)) {
+        langBanner.classList.add('is-visible');
+
+        if (langStayBtn) {
+            langStayBtn.addEventListener('click', () => {
+                setPreferredLang(currentLang);
+                langBanner.classList.remove('is-visible');
+            });
+        }
+
+        if (langSwitchBtn) {
+            langSwitchBtn.addEventListener('click', () => {
+                const target = currentLang === 'en' ? 'it' : 'en';
+                setPreferredLang(target);
+                const targetUrl = target === 'en' ? alternateEnUrl : alternateItUrl;
+                if (targetUrl) window.location.href = targetUrl;
+            });
+        }
+    }
+
     const cookieBanner = document.getElementById('cookie-banner');
     const cookieAcceptBtn = document.getElementById('cookie-accept');
     const cookieRejectBtn = document.getElementById('cookie-reject');
@@ -91,6 +228,18 @@ document.addEventListener('DOMContentLoaded', function() {
         const honeypot = contactForm.querySelector('input[name="fax_number"]');
         if (honeypot) honeypot.value = '';
         const formRenderedAt = Date.now();
+        const isEnUi = document.documentElement.lang === 'en';
+        const ui = {
+            retrySoon: isEnUi ? 'Please wait a second and try again.' : 'Riprova tra un secondo e invia di nuovo.',
+            privacyRequired: isEnUi ? 'To submit the form you must accept the privacy policy.' : 'Per inviare il form devi accettare l’informativa privacy.',
+            tooSoon: isEnUi ? 'You have recently sent a request. Please try again in a few seconds.' : 'Hai già inviato una richiesta da poco. Riprova tra qualche secondo.',
+            emailUnavailable: isEnUi ? 'Email service not available. You can email us at sornexstudio@gmail.com.' : 'Servizio email non disponibile. Puoi scriverci direttamente a sornexstudio@gmail.com.',
+            configMissing: isEnUi ? 'Missing EmailJS configuration.' : 'Configurazione EmailJS mancante.',
+            requiredFields: isEnUi ? 'Please fill out the required fields before sending.' : 'Compila i campi richiesti prima di inviare.',
+            sending: isEnUi ? 'Sending...' : 'Invio...',
+            sent: isEnUi ? 'Request sent! We will reply within 24 business hours.' : 'Richiesta inviata! Ti rispondiamo entro 24 ore lavorative.',
+            sendFailed: isEnUi ? 'Sending failed. Please try again or email sornexstudio@gmail.com.' : 'Invio non riuscito. Riprova o scrivi a sornexstudio@gmail.com.'
+        };
 
         const setStatus = (variant, text) => {
             if (!statusEl) return;
@@ -118,15 +267,15 @@ document.addEventListener('DOMContentLoaded', function() {
             if (honeypot) honeypot.value = '';
 
             if (Date.now() - formRenderedAt < 1200) {
-                setStatus('error', 'Riprova tra un secondo e invia di nuovo.');
-                openCenterModal('Riprova tra un secondo e invia di nuovo.');
+                setStatus('error', ui.retrySoon);
+                openCenterModal(ui.retrySoon);
                 return;
             }
 
             const privacyConsent = contactForm.querySelector('input[name="privacy_consent"]');
             if (privacyConsent && !privacyConsent.checked) {
-                setStatus('error', 'Per inviare il form devi accettare l’informativa privacy.');
-                openCenterModal('Per inviare il form devi accettare l’informativa privacy.');
+                setStatus('error', ui.privacyRequired);
+                openCenterModal(ui.privacyRequired);
                 return;
             }
 
@@ -134,21 +283,21 @@ document.addEventListener('DOMContentLoaded', function() {
             try {
                 const lastSent = Number(localStorage.getItem(lastSentKey) || '0');
                 if (Number.isFinite(lastSent) && Date.now() - lastSent < 30000) {
-                    setStatus('error', 'Hai già inviato una richiesta da poco. Riprova tra qualche secondo.');
-                    openCenterModal('Hai già inviato una richiesta da poco. Riprova tra qualche secondo.');
+                    setStatus('error', ui.tooSoon);
+                    openCenterModal(ui.tooSoon);
                     return;
                 }
             } catch (e) {}
 
             if (!window.emailjs || typeof window.emailjs.send !== 'function') {
-                setStatus('error', 'Servizio email non disponibile. Puoi scriverci direttamente a sornexstudio@gmail.com.');
-                openCenterModal('Servizio email non disponibile. Puoi scriverci direttamente a sornexstudio@gmail.com.');
+                setStatus('error', ui.emailUnavailable);
+                openCenterModal(ui.emailUnavailable);
                 return;
             }
 
             if (!serviceId || !templateId) {
-                setStatus('error', 'Configurazione EmailJS mancante.');
-                openCenterModal('Configurazione EmailJS mancante.');
+                setStatus('error', ui.configMissing);
+                openCenterModal(ui.configMissing);
                 return;
             }
 
@@ -163,15 +312,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 : '';
 
             if (!name || !email || !message || !topic) {
-                setStatus('error', 'Compila i campi richiesti prima di inviare.');
-                openCenterModal('Compila i campi richiesti prima di inviare.');
+                setStatus('error', ui.requiredFields);
+                openCenterModal(ui.requiredFields);
                 return;
             }
 
             if (submitBtn) {
                 submitBtn.disabled = true;
                 submitBtn.dataset.originalText = submitBtn.textContent;
-                submitBtn.textContent = 'Invio...';
+                submitBtn.textContent = ui.sending;
             }
 
             try {
@@ -187,11 +336,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 try { localStorage.setItem(lastSentKey, String(Date.now())); } catch (e) {}
 
                 contactForm.reset();
-                setStatus('success', 'Richiesta inviata! Ti rispondiamo entro 24 ore lavorative.');
-                openCenterModal('Richiesta inviata! Ti rispondiamo entro 24 ore lavorative.');
+                setStatus('success', ui.sent);
+                openCenterModal(ui.sent);
             } catch (err) {
-                setStatus('error', 'Invio non riuscito. Riprova o scrivi a sornexstudio@gmail.com.');
-                openCenterModal('Invio non riuscito. Riprova o scrivi a sornexstudio@gmail.com.');
+                setStatus('error', ui.sendFailed);
+                openCenterModal(ui.sendFailed);
             } finally {
                 if (submitBtn) {
                     submitBtn.disabled = false;
